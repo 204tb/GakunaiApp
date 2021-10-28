@@ -9,7 +9,7 @@
 </head>
 <span class="defBarColor fixed-top" style="width: 100%;height:4em;;"><h1>　</h1>
 <nav class="container navbar navbar-expand-lg fixed-top navbar-light defBarColor">
-    <h2><a class="" href="#" style="color:white;">学内アプリ</a></h2>
+    <h2><a class="" href="../index.php" style="color:white;">学内アプリ</a></h2>
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#contents" alia-controls="contents" alia-expanded="false" aria-label="navigation">
         <span class="navbar-toggler-icon"></span>
