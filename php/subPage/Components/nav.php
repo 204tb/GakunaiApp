@@ -20,7 +20,7 @@
                 <a class="nav-link row ml-5" href="../出席管理/my_page.php" style="color:white;">マイページ</a>
                 <a class="nav-link row ml-5" href="../時間割/Timeable.php" style="color:white";>時間割</a>
                 <a class="nav-link row ml-5" href="../掲示板/board.php" style="color:white";>掲示板</a>
-                <a href="../sign_out.php" class="nav-link float-right" style="position: fixed;right:0%;">サインアウト</a>
+                <a href="../sign_out.php" class="nav-link float-right ml-4">サインアウト</a>
                 </div>
                 
             </ul>
