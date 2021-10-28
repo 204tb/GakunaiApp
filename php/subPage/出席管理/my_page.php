@@ -35,7 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         <span class="pos_R"><a href="../index.php" class="nav_white">サイト機能一覧へ</a></span><!--右寄せにする-->
         </div>
         <div style="text-align:center;top:30%;">
-        ここに学生の情報を表示
+            <table>
+                <th>クラス</th>
+                <th>生徒番号</th>
+                <tr>
+                    <td><?= $user['classes_id']?></td>
+                    <td><?= $user['student_id']?></td>
+                </tr>
+            </table>
         </div>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
