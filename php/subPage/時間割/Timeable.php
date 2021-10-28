@@ -49,8 +49,10 @@ $timeTable = Get_TimeTable($pdo,$my_class);
     <title>時間割</title>
 </head>
 <body class="bg-lsBlue">
-<?php include("../components/contens.php")?>
-<span class="mt-5"></span>
+<?php include("../Components/load_js.php")?>
+<?php include("../Components/nav.php")?>
+    <br>
+
     <div class="container">
         <h1 class="ClassName"><?= $my_class ?></h1>
         <table class="mt-5"style="top:15%;">

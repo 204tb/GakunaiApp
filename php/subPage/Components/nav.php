@@ -8,19 +8,24 @@
     <title>Document</title>
 </head>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg fixed-top navbar-light defBarColor">
+    <h2><a class=" ml-5" href="../index.php" style="color:white;">学内アプリ</a></h2>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#contents" alia-controls="contents" alia-expanded="false" aria-label="navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active"> <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">Link</a> </li>
-            <li class="nav-item"> <a class="nav-link disabled" href="#">Disabled</a> </li>
+    <div class="collapse navbar-collapse" id="contents">
+
+            <div class="row">
+            <a class="nav-link row ml-5" href="../出席管理/my_page.php" style="color:white;">マイページ</a>
+            <a class="nav-link row ml-5" href="../時間割/Timeable.php" style="color:white";>時間割</a>
+            <a class="nav-link row ml-5" href="../掲示板/board.php" style="color:white";>掲示板</a>
+            <a href="../sign_out.php" class="nav-link float-right" style="position: fixed;right:0%;">サインアウト</a>
+            </div>
+            
         </ul>
-        <form class="form-inline my-2 my-lg-0"> <input class="form-control mr-sm-2" type="search" placeholder="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
     </div>
 </nav>
+<br><br>
+
+

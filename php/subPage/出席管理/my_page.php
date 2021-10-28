@@ -29,34 +29,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <link rel="stylesheet" href="../../../css/sample.css">
     <title>マイページ</title>
 </head>
+<?php include("../Components/load_js.php")?>
+
+<br>
 <body class="bg-lsBlue">
-        <div class="row M_bottom-5 defBarColor mb-5">
-        <h2 class="title_pos nav_white"><?= $user["student_name"] ?>のマイページ</h2>
-        <span class="pos_R"><a href="../index.php" class="nav_white">サイト機能一覧へ</a></span><!--右寄せにする-->
-        </div>
-        <div style="text-align:center;top:30%;">
-            <table>
-                <th>クラス</th>
-                <th>生徒番号</th>
-                <tr>
-                    <td><?= $user['classes_id']?></td>
-                    <td><?= $user['student_id']?></td>
-                </tr>
-            </table>
-        </div>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
-
     <div class="container">
-    <form action="" method="post">
-        <div class="btn-group" style="width:100%;">
-        <button class="w-50 btn btn-lg btn-primary btn-block" name="attendance" onClick="return confirm('出席しますか?')">出席</button>
-        <button class="w-50 btn btn-lg btn-danger" name="leave_early"onClick="return confirm('早退しますか?')">早退</button>
-        <button class="w-50 btn btn-lg btn-success" name="attendance_rate">出席率</button>
-        </div>
-
-    </form>
+    <?php include("../Components/nav.php")?>
+            <div style="text-align:center;top:30%;">
+                <table>
+                    <th>クラス</th>
+                    <th>生徒番号</th>
+                    <tr>
+                        <td><?= $user['classes_id']?></td>
+                        <td><?= $user['student_id']?></td>
+                    </tr>
+                </table>
+            </div>
+        <form action="" method="post">
+            <div class="btn-group" style="width:100%;">
+            <button class="w-50 btn btn-lg btn-primary btn-block" name="attendance" onClick="return confirm('出席しますか?')">出席</button>
+            <button class="w-50 btn btn-lg btn-danger" name="leave_early"onClick="return confirm('早退しますか?')">早退</button>
+            <button class="w-50 btn btn-lg btn-success" name="attendance_rate">出席率</button>
+            </div>
+        </form>
     </div>
 </body>
 </html>

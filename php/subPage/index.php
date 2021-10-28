@@ -23,17 +23,33 @@ if(!empty($_SESSION["user"])){
     <title>サイトメニュー</title>
 </head>
 
+<script src ="../../js/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
 <body class="bg-lsBlue">
     
-    <div class="row M_bottom-5 defBarColor header_pos">
-        <h1 style="color:white; padding-left:4%;">学内アプリ</h1>
-        <a href="出席管理/my_page.php" class="itembar">出席管理</a>
-        <a href="時間割/Timeable.php" class="itembar">時間割</a>
-        <a href="掲示板/board.php" class="itembar">掲示板</a>
-        <!--<a href="subPage/学内PC予約/Resevation.php" class="itembar">PC予約</a>-->
-        <span class="pos_R nav_white">ログイン中：<?=$user["student_name"]?></span>
-        <span class="pos_R mar_t2"><a href="sign_out.php">サインアウト</a></span>
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-light defBarColor">
+    <h2><a class=" ml-5" href="../index.php" style="color:white;">学内アプリ</a></h2>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#contents" alia-controls="contents" alia-expanded="false" aria-label="navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="contents">
+
+            <span class="row">
+            <a class="nav-link row ml-5" href="出席管理/my_page.php" style="color:white;">マイページ</a>
+            <a class="nav-link row ml-5" href="時間割/Timeable.php" style="color:white";>時間割</a>
+            <a class="nav-link row ml-5" href="掲示板/board.php" style="color:white";>掲示板</a>
+            <a href="sign_out.php" class="nav-link float-right" style="position: fixed;right:0%;">サインアウト</a>
+            </span>
+    
     </div>
+
+</nav>
+<br><br><br>
+
 
     <div class="container"> 
 

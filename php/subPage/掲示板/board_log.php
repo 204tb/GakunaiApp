@@ -37,11 +37,12 @@
 
     <title>Document</title>
 </head>
+<?php include("../Components/load_js.php")?>
+<?php include("../Components/nav.php")?>
+
 <script src ="../../../js/jquery-3.6.0.min.js"></script>
 <body class="bg-lsBlue">
-    <div class="row M_bottom-5 defBarColor">
-    <h1 class="title_pos"><a href="board.php">過去投稿</a></h1>
-    </div>
+
     <div class="container mt-5">
 
 <h3 class="mb-5">過去投稿一覧</h3>

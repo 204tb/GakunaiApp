@@ -42,11 +42,11 @@
 
     <title>Document</title>
 </head>
-<script src ="../../../js/jquery-3.6.0.min.js"></script>
-<body class="bg-lsBlue">
-    <div class="row M_bottom-5 defBarColor">
-    <h1 class="title_pos"><a href="../index.php">掲示板</a></h1>
-    </div>
+<?php include("../Components/load_js.php")?>
+<?php include("../Components/nav.php")?>
+
+<body class="bg-lsBlue pad-t10">
+
 
     <div class="container mt-5">
 
