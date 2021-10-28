@@ -35,8 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 <body class="bg-lsBlue">
     <div class="container">
     <?php include("../Components/nav.php")?>
-            <div style="text-align:center;top:30%;">
-                <table>
+    <h2 class="mb-5">学生情報</h2>
+            <div>
+                <table class="table">
                     <th>クラス</th>
                     <th>生徒番号</th>
                     <tr>
