@@ -183,7 +183,7 @@ function Update($pdo,$user,$timeTable,$subject,$status){
 }
 
 //pdo,グローバル変数,定数,ログチェックの関数
-require_once('parts.php');
+require_once('components/parts.php');
 require_once('../Components/user_check.php');
 
 //現在日時に早退していないか確認
