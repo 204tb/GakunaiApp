@@ -5,7 +5,8 @@ require_once('subPage/Components/connect.php');
 $pdo = Attendance();
 
 session_start();
-    
+session_regenerate_id();//セッションidを再発行
+
 //サニタイズ(XSS対策)、入力値が空でないか確認
 function check($posts)
 {
