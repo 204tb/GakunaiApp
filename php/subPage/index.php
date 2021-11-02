@@ -92,7 +92,6 @@ if(!empty($_SESSION["user"])){
 
                 <button type="submit" class ="Bulletin_board_button btn btn-primary"><a href="掲示板/board.php" style="color:white;">掲示板へ</a></button>
             </div>
-            <p><a href="Components/nav.php">テスト用</a></p>
     </div>
 </body>
 

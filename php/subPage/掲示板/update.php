@@ -20,8 +20,8 @@ if(!empty($errors)){
 }
 
 if($_SERVER["REQUEST_METHOD"] == "POST" && (!empty($_POST["title"]) && !empty($_POST["text"]))){
-    $title=$_POST["title"];
-    $user_text=$_POST["text"];
+    $title=htmlspecialchars($_POST["title"],ENT_QUOTES,"UTF-8");
+    $user_text=htmlspecialchars($_POST["text"],ENT_QUOTES,"UTF-8");
     $sql = "INSERT INTO userlog(title,name,text) VALUES(:title,:name,:user_text)";//文字列として読み込ませないとカラムと勘違いする
     //bindparamで値を紐づける
     $stmt = $pdo->prepare($sql);

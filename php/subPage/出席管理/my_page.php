@@ -33,26 +33,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 <br>
 <body class="bg-lsBlue">
-    <div class="container">
-    <?php include("../Components/nav.php")?>
-    <h2 class="mb-5">学生情報</h2>
-            <div>
-                <table class="table">
-                    <th>クラス</th>
-                    <th>生徒番号</th>
-                    <tr>
-                        <td><?= $user['classes_id']?></td>
-                        <td><?= $user['student_id']?></td>
-                    </tr>
-                </table>
+    <div class="">
+        <?php include("../Components/nav.php")?>
+            <div class="container">
+                    <h2 class="mb-5 container">学生情報</h2>
+                        <table class="table container">
+                            <th>クラス</th>
+                            <th>生徒番号</th>
+                            <tr>
+                                <td><?= $user['classes_id']?></td>
+                                <td><?= $user['student_id']?></td>
+                            </tr>
+                        </table>
+
+                <form action="" method="post">
+                    <div class="row container ml-5" style="width:100%;position:fixed;top:70%;">
+                        <button class="w-50 btn col-3 btn-primary btn-block mr-5" name="attendance" onClick="return confirm('出席しますか?')">出席</button>
+                        <button class="w-50 btn col-3 btn-danger mr-5" name="leave_early"onClick="return confirm('早退しますか?')">早退</button>
+                        <button class="w-50 btn col-3 btn-success mr-5" name="attendance_rate">出席率</button>
+                    </div>
+                </form>
             </div>
-        <form action="" method="post">
-            <div class="btn-group" style="width:100%;">
-            <button class="w-50 btn btn-lg btn-primary btn-block" name="attendance" onClick="return confirm('出席しますか?')">出席</button>
-            <button class="w-50 btn btn-lg btn-danger" name="leave_early"onClick="return confirm('早退しますか?')">早退</button>
-            <button class="w-50 btn btn-lg btn-success" name="attendance_rate">出席率</button>
-            </div>
-        </form>
     </div>
 </body>
 </html>
