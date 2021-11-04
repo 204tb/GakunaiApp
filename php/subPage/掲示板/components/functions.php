@@ -20,9 +20,9 @@
         return $max_id["id"]-10;//最大値から表示件数の10を引く
     }
     
-    function get_title($pdo){
+    function get_title($pdo,$offset){
         //投稿の中からタイトルのみを全て取得(重複は省く)
-        $sql = "SELECT name,title from userlog";
+        $sql = "SELECT name,title from userlog ORDER BY id ASC LIMIT 10 OFFSET {$offset}";
         $stmt = $pdo->query($sql);
         return $stmt->fetchAll();
     }

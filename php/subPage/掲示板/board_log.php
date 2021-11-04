@@ -59,7 +59,7 @@
                             <label class="board_title marl-5p"><?=$value["title"]?></label>
                         </div>
                             <span class="board_text marl-5p"><?=$value["text"]?></span>
-
+                        <!--リプライを取得-->
                         <?php $reply = get_reply($pdo,$value["title"],$value["name"]);?>
 
 
@@ -98,7 +98,7 @@
     </div>
     <div class="mt-5 pagination">
         <?php for($i=1;$i<=$page_numbers;$i++){
-            echo '<button class="btn btn-primary mr-3 page-item"><a href ="./board_log.php?page_num='.$i.'" style="color:white;">'.$i.'</a></button>';
+            echo '<button class="btn btn-primary mr-1 page-item"><a href ="./board_log.php?page_num='.$i.'" style="color:white;">'.$i.'</a></button>';
         }
         ?>
     </div>

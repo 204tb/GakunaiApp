@@ -13,13 +13,14 @@
         ];
 
     }
-    $titles = get_title($pdo);  
+  
 
     $current_index =max_id($pdo);
 
     if($current_index<0){
         $current_index=0;
     }
+    $titles = get_title($pdo,$current_index);
     //直近10件を表示
     $stmt = get_posts($pdo,$current_index);
 
@@ -27,6 +28,7 @@
         $logs[]=$data;
     }
     krsort($logs);
+    krsort($titles);
 
 
 ?>
@@ -173,7 +175,7 @@
                 </form>
             </div>
         </div>
-        <button type="button" class="mt-3 mar_b3 btn btn-info btn-pos btn-block  mt-5 form_btn">投稿返信切替</button>
+        <button type="button" class="mt-3 mar_b3 btn btn-success btn-pos btn-block  mt-5 form_btn">投稿返信切替</button>
     </div>
 
 </body>
