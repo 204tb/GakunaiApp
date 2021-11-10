@@ -21,17 +21,17 @@
     }
     
     function get_title($pdo,$offset){
-        //投稿の中からタイトルのみを全て取得(重複は省く)
-        $sql = "SELECT name,title from userlog WHERE delete_flag=0 ORDER BY id ASC LIMIT 10 OFFSET {$offset}";
+        //投稿の中からタイトル、name,日付を10件取得
+        $sql = "SELECT name,title,date from userlog WHERE delete_flag=0 ORDER BY id ASC LIMIT 10 OFFSET {$offset}";
         $stmt = $pdo->query($sql);
         return $stmt->fetchAll();
     }
 
-    function get_reply($pdo,$title,$name){
-        //受け取ったタイトルがreplyテーブルにあれば返信を取得
-        $sql = "SELECT * from reply WHERE :title = title AND :post_user_name = post_user_name";//タイトルと投稿者が一致
+    function get_reply($pdo,$title,$name,$date){//リプライテーブルから取得
+        //受け取ったタイトル,name,日付が一致した投稿を取得
+        $sql = "SELECT * from reply WHERE :title = title AND :post_user_name = post_user_name AND :distinationDate = distinationDate";//タイトルと投稿者が一致
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([":title" => $title,":post_user_name" => $name]);
+        $stmt->execute([":title" => $title,":post_user_name" => $name, ":distinationDate" => $date]);
         return $stmt->fetchAll();
     }
 ?>

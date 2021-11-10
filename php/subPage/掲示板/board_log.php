@@ -60,30 +60,40 @@
                         </div>
                             <span class="board_text marl-5p"><?=$value["text"]?></span>
                         <!--リプライを取得-->
-                        <?php $reply = get_reply($pdo,$value["title"],$value["name"]);?>
+                        <?php $reply = get_reply($pdo,$value["title"],$value["name"],$value["date"]);?>
+                            <!--$replyから　日付を取得して投稿を区別-->
 
+                            <!--投稿に返信がある場合表示する-->
+                            <?php if(is_array($reply) && count($reply) >0):?>
+                                <!--ボタンのnameを定義-->
+                                <?php $date = new DateTime($value["date"]);
+                                      $str_date = $date->format("Y-m-d-H-i-s");//string型に変換
+                                ?>
+                                <?php $btn_name = "reply_chack".$value["title"].$value["name"].$str_date?><!--返信用のボタンを追加-->
+                                <?php $reply_name = "reply".$value["title"].$value["name"].$str_date?>
 
-                        <!--投稿に返信がある場合表示する-->
-                        <?php if(is_array($reply) && count($reply) >0):?>
-                            <!--ボタンのnameを定義-->
-                            <?php $btn_name = "reply_chack".$value["title"].$value["name"]?>
-                            <?php $reply_name = "reply".$value["title"].$value["name"]?>
-                            <div class="<?=$reply_name?> text-left list-group-item">
-                                <?php foreach($reply as $rp):?>
-                                            <p class="mb-1">返信者:<?=$rp["name"]?></p>
-                                            <p class="ml-5"><?=$rp["reply"]?></p>
-                                            <p class="mt-1"><?=$rp["date"]?></p>
-                                            <p style="border-bottom: 0.01em solid black;"></p>
-                                <?php endforeach;?>                                   
-                            </div>
-                            <button class="<?=$btn_name?> float-right btn btn-primary mt-2">返信一覧</button>
-                            <script>
-                                $(".<?=$reply_name?>").hide();
-                                $(".<?=$btn_name?>").click(function(){
-                                    $(".<?=$reply_name?>").toggle();
-                                });
-                            </script>
-                        <?php endif;?>
+                                <div class="<?=$reply_name?> text-left list-group-item">
+                                    <?php foreach($reply as $rp):?>
+                                                <p class="mb-1">返信者:<?=$rp["name"]?></p>
+                                                <p class="ml-5"><?=$rp["reply"]?></p>
+                                                <p class="mt-1"><?=$rp["date"]?></p>
+                                                <p style="border-bottom: 0.01em solid black;"></p>
+                                                
+                                    <?php endforeach;?>   
+                              
+                                </div>
+
+                                
+                                <button class="<?=$btn_name?> float-right btn btn-primary mt-2">返信一覧</button>
+                                <script>
+
+                                    $(".<?=$reply_name?>").hide();//返信を隠す  
+                                    $(".<?=$btn_name?>").click(function(){//
+                                        $(".<?=$reply_name?>").toggle(450);//表示非表示を切替
+                                    });
+
+                                </script>
+                            <?php endif;?>
 
 
 
