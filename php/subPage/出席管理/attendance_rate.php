@@ -10,15 +10,14 @@ require_once('../Components/user_check.php');
 //pdo変数
 $pdo_attendance = Attendance();
 
-//処理結果をメッセージとして表示するための変数
-global $message;
-
+//出席率データを取得
 $attendance_rate = Get_Attendance_rate($pdo_attendance,$user);
+
 var_dump($attendance_rate);
 
+//1週間以内の出席率データを教科ごとに1つずつ取得
 function Get_Attendance_rate($pdo,$user)
 {        
-    //現在日時の早退記録を探す
     try{
         $sql = "SELECT * FROM attendance_rate
                 WHERE DATE_FORMAT(update_time, '%Y-%m-%d') >= (DATE_FORMAT(now(), '%Y-%m-%d') - INTERVAL 7 DAY)
