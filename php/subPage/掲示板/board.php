@@ -163,7 +163,7 @@
                                 <!--タイトルタグを使って投稿を管理-->
 
                                 <?php foreach($titles as $title):?>
-                                    <option value='<?=$title["title"]?>,<?=$title["name"]?>,<?=$title["date"]?>'>投稿者:<?=$title["name"];?>　タイトル:<?=$title["title"]?> 日時:<?=$title["date"]?></option>
+                                    <option value='<?=$title["title"]?>,<?=$title["name"]?>,<?=$title["date"]?>'>投稿者:<?=$title["name"];?>　タイトル:<?=$title["title"]?>　日時:<?=$title["date"]?></option>
                                 <?php endforeach;?>
                                 
                                 </select>

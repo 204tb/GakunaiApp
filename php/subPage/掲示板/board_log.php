@@ -43,9 +43,9 @@
 <script src ="../../../js/jquery-3.6.0.min.js"></script>
 <body class="bg-lsBlue">
 
-    <div class="container mt-5">
+<div class="container mt-5">
 
-<h3 class="mb-5">過去投稿一覧</h3>
+<h3 class="mb-5">過去投稿一覧　　<?=$current_page?>ページ目</h3>
     <!--古い順に表示-->
     <div class ="textview board_color">
         <!--ページング処理を追加する-->
@@ -106,12 +106,59 @@
 
 
     </div>
-    <div class="mt-5 pagination">
-        <?php for($i=1;$i<=$page_numbers;$i++){
-            echo '<button class="btn btn-primary mr-1 page-item"><a href ="./board_log.php?page_num='.$i.'" style="color:white;">'.$i.'</a></button>';
-        }
-        ?>
     </div>
+
+    <?php $previous = ($current_page-1);$next =($current_page+1);
+    if($previous<1){
+        $previous =1;
+    }
+    if($next>$page_numbers){
+        $next = $page_numbers;
+    }
+    
+    
+    $page_start=$current_page-2;//現在のページの2個前まで
+    $page_amount = $current_page+2;//現在のページから2つ後まで
+ 
+    if($page_start<1){
+        $page_start=1;
+    }
+    if($page_amount>$page_numbers){
+        $page_amount=$page_numbers;
+    }
+    //不足ページを追加
+    if($current_page==1){
+        $page_amount=$current_page+4;
+    }
+    if($current_page==2){
+        $page_amount=$current_page+3;
+    }
+    if($current_page==3){
+        $page_amount=$current_page+2;
+    }
+    
+    //不足ページを追加
+    if($current_page==$page_numbers){
+        $page_start=$page_numbers-4;
+    }
+    if($current_page==$page_numbers-1){
+        $page_start=$page_numbers-4;
+    }
+    if($current_page==$page_numbers-2){
+        $page_start=$page_numbers-4;
+    }
+?>
+    <div class="mt-5 pagination container d-flex justify-content-center">
+        <?php echo '<button class="btn btn-primary mr-5 page-item"><a href ="./board_log.php?page_num='.($previous).'" style="color:white;">'."前へ".'</a></button>'?>
+        <div class="buttons" style="text-align: center;">
+            <?php for($i=$page_start;$i<=$page_amount;$i++){
+
+                echo '<button class="btn btn-primary mr-5 page-item"><a href ="./board_log.php?page_num='.$i.'" style="color:white;">'.$i.'</a></button>';
+            }
+            ?>
+        </div>
+
+        <?php echo '<button class="btn btn-primary mr-2 page-item "><a href ="./board_log.php?page_num='.($next).'" style="color:white;">'."次へ".'</a></button>'?>
     </div>
 
 
