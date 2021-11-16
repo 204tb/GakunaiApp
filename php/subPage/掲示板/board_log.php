@@ -23,6 +23,8 @@
     while($data =$stmt->fetch()){
         $logs[]=$data;
     }
+
+
     krsort($logs);
 
 ?>
