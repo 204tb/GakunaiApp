@@ -1,10 +1,12 @@
 <?php
 //投稿データの取得
     function get_posts($pdo,$offset){
-        $sql = "SELECT * FROM userlog WHERE delete_flag=0 ORDER BY id ASC LIMIT 10 OFFSET {$offset}";
+        $sql = "SELECT * FROM userlog WHERE delete_flag=0 ORDER BY id ASC LIMIT 10 OFFSET {$offset}";//削除されている投稿を飛ばす処理を追加(delete_postが1であれば飛ばして10件になるまで取得)
         $stmt=$pdo->query($sql);
         return $stmt;
+        
     }
+
     //投稿データの取得(降順)
     function get_posts_desc($pdo,$offset){
         $sql = "SELECT * FROM userlog WHERE delete_flag=0 ORDER BY id DESC LIMIT 10 OFFSET {$offset}";
@@ -34,4 +36,16 @@
         $stmt->execute([":title" => $title,":post_user_name" => $name, ":distinationDate" => $date]);
         return $stmt->fetchAll();
     }
+    function get_post_all($pdo){//削除済み投稿以外を全て取得する関数
+        $sql = "SELECT * FROM userlog WHERE delete_flag=0 ORDER BY id ASC";//削除済みでない投稿を全て取得するsql
+        $stmt=$pdo->query($sql);
+        return $stmt;
+    }
+    function get_count($pdo){
+        $sql = "SELECT count(*) as cnt FROM userlog WHERE delete_flag=0";//削除済みでない投稿を全て取得するsql
+        $stmt=$pdo->query($sql);
+        return $stmt->fetch();
+    }
+
+
 ?>

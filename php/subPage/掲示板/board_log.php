@@ -2,7 +2,8 @@
     require_once "components/connect.php";
     require_once "components/functions.php";
     session_start();
-    $logs=[];
+    $logs_all =[];
+    $posts_10 = [];//投稿を10件格納する配列
     $PAGE_MAX=10;
     $now_data_max =max_id($pdo)+10;//現在の最大idの取得
     $page_numbers =ceil($now_data_max/10);
@@ -18,12 +19,26 @@
 
     
     //直近10件を降順で表示
-    $stmt = get_posts($pdo,$paging_id);
+    //$_SESSIONに登録することでシリアル化エラーが出る(後で修正)
+    $post_all = get_post_all($pdo);//投稿を全て取得して、セッションに登録
+    $data_count = get_count($pdo);//投稿数を取得(削除済み投稿を含まない)
 
-    while($data =$stmt->fetch()){
-        $logs[]=$data;
+
+    while($data =$post_all->fetch()){
+        $logs_all[]=$data;
     }
-    krsort($logs);
+
+    for($i = $paging_id;$i< $paging_id+10;$i++){//10件取得
+        if($logs_all[$i]["delete_flag"] ==1){//削除済み投稿であればスキップ
+            continue;
+        }
+        $posts_10[] = $logs_all[$i];//全ての投稿から10件取得
+        if($i==$data_count[0]-1){
+            break;
+        }
+    }   
+
+
 
 ?>
 <!DOCTYPE html>
@@ -51,7 +66,7 @@
         <!--ページング処理を追加する-->
         <div class ="post card">
             <ul class="list-group">
-                <?php foreach($logs as $value):?>
+                <?php foreach($posts_10 as $value):?>
                         
                     <li class="list-group-item pb-5">
                         <span><span class="ml-5 float-right board_date"><?=$value["date"]?></span><span class="name_pos">投稿者:<?=$value["name"]?></span></span>

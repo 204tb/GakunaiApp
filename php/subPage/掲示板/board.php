@@ -15,20 +15,42 @@
     }
   
 
-    $current_index =max_id($pdo);
+    $current_index =max_id($pdo);//最大値の10個前
 
     if($current_index<0){
         $current_index=0;
     }
-    $titles = get_title($pdo,$current_index);
-    //直近10件を表示
-    $stmt = get_posts($pdo,$current_index);
 
-    while($data =$stmt->fetch()){
-        $logs[]=$data;
+    //直近10件を表示  削除されている投稿があった場合追加で取得
+    $get_check =false;
+
+
+
+    while(count($logs) <10){//要素が10個取得出来ていない場合
+        $arrays =[];
+        $stmt = get_posts($pdo,$current_index);//投稿を取得
+        while($data =$stmt->fetch()){
+            if($get_check){
+                $arrays[]=$data;
+            }else{
+                $logs[]=$data;//
+            }
+        }
+        $get_check =true;//取得が2回目以降か判断
+        if($get_check){
+            $logs =array_merge($logs,$arrays);//配列を結合して$logに代入
+        }
+        $current_index-=10;//値の取得位置を10
     }
+    //日付で並び替え　（配列内のdateを使う
+    usort($logs, function($a, $b){
+        return $a["date"] > $b["date"];//最新順にソート
+    });
     krsort($logs);
-    krsort($titles);
+    for($i = count($logs);$i>10;$i--){//配列の中身を10個にする
+        array_pop($logs);//配列の末尾からpop  
+    }
+
 
 
 ?>
@@ -54,7 +76,7 @@
 
     <h3 class="mb-5">   <span class ="spinner-grow text-info"></span>直近の投稿(最大10件まで表示)</h3>
         <div class ="textview board_color">
-
+        
             <div class ="post card">
                 <ul class="list-group">
                     <?php foreach($logs as $value):?>
@@ -162,7 +184,7 @@
                                 <select name="reply_data" id="">
                                 <!--タイトルタグを使って投稿を管理-->
 
-                                <?php foreach($titles as $title):?>
+                                <?php foreach($logs as $title):?>
                                     <option value='<?=$title["title"]?>,<?=$title["name"]?>,<?=$title["date"]?>'>投稿者:<?=$title["name"];?>　タイトル:<?=$title["title"]?>　日時:<?=$title["date"]?></option>
                                 <?php endforeach;?>
                                 
