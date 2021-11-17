@@ -37,7 +37,7 @@
         return $stmt->fetchAll();
     }
     function get_post_all($pdo){//削除済み投稿以外を全て取得する関数
-        $sql = "SELECT * FROM userlog WHERE delete_flag=0 ORDER BY id ASC";//削除済みでない投稿を全て取得するsql
+        $sql = "SELECT * FROM userlog WHERE delete_flag=0 ORDER BY id DESC";//削除済みでない投稿を全て取得するsql
         $stmt=$pdo->query($sql);
         return $stmt;
     }

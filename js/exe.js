@@ -8,6 +8,14 @@ $("document").ready(function(){
 });
 
 //説明文の表示切替
+/*(".explanation_title_board").hover(
+    function(){
+        $(".explanation_text_board").show();
+    },
+    function(){
+        $(".explanation_text_board").hide();
+    }
+);*/
 $(".explanation_title_board").click(function(){
     $(".explanation_text_board").fadeToggle("fast","linear");
 });
@@ -19,6 +27,7 @@ $(".explanation_title_time").click(function(){
 $(".explanation_title_attendancerate").click(function(){
     $(".explanation_text_attendancerate").fadeToggle("fast","linear");
 });
+
 
 //返信の表示切替
 $(".reply_check").click(function(){
