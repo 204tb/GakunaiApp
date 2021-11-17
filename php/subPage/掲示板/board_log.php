@@ -179,7 +179,7 @@
     <div class="reply_form container">
                 <form action="board_reply.php" method="post" class ="mar_t10">
                     <div id="mar_t10" class="alert-primary pb-sm-1 pt-sm-5 mb-4 border_radius">
-                        <h4 class="mb-5 ml-5">投稿に返信</h4>
+                        <h4 class="mb-5" style="margin-left: 10%;">投稿に返信</h4>
                         <div class="contents">
                             <div class="marl-10p">
                                 <label for="title">タイトル</label>
