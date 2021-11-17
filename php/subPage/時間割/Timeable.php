@@ -55,25 +55,30 @@ $timeTable = Get_TimeTable($pdo,$my_class);
 
     <div class="container">
         <h1 class="ClassName"><?= $my_class ?></h1>
-        <table class="mt-5"style="top:15%;">
+        <table class="mt-5 container"style="top:15%;">
+
             <!-- 縦列の繰り返 し-->
             <?php for ($parent = 0 ; $parent < count($timeTable) ; $parent++) : ?>
                 <!-- ヘッダー　-->
-                <tr">
+                <tr>
                     <?php if ($parent == 0) : ?>
                         <?php for ($index = 0 ; $index < count($timeTable[$parent])/2 ; $index++) : ?>
                             <th style="width:10%";><?= $header[$index]?></th>
                         <?php endfor; ?>
                     <?php endif; ?>
                 </tr>
+
                 <!-- 横列の繰り返し -->
+
                 <tr>
                     <?php for ($child = 0 ; $child < count($timeTable[$parent])/2 ; $child++) : ?>
                         <?php if($timeTable[$parent][$child] == NULL){$timeTable[$parent][$child] = "/";}?>
                         <td><?= $timeTable[$parent][$child]?></td>
                     <?php endfor; ?>
                 </tr>
+                
             <?php endfor; ?>
+
         </table>
     </div>
 </body>

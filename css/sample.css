@@ -1,9 +1,6 @@
 @charset "UTF-8";
-@media screen and (min-width:992px) and (max-width:1600px){
-    .row .left_m4{
-        margin-left: 10em!important;
-    }
-}
+
+
 /*余白の初期化とフォントサイズの変更*/
 *{
     margin: 0;

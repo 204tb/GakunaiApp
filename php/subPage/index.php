@@ -38,7 +38,7 @@ if(!empty($_SESSION["user"])){
     </button>
     <div class="collapse navbar-collapse" id="contents">
 
-            <span class="row left-m4">
+            <span class="row">
             <a class="nav-link row ml-1" href="出席管理/my_page.php" style="color:white;">マイページ</a>
             <a class="nav-link row ml-5" href="時間割/Timeable.php" style="color:white";>時間割</a>
             <a class="nav-link row ml-5" href="掲示板/board.php" style="color:white";>掲示板</a>
@@ -59,7 +59,7 @@ if(!empty($_SESSION["user"])){
                 <p>マイページで出席に関する機能が使用できます。</p>
                 <div class="explanation">
                     <span id="explanation_title" class="explanation_title_attendancerate mar-lef4e">機能について</span>
-                    <div class="explanation_text_attendancerate" id="explanation_text">
+                    <div class="explanation_text_attendancerate text-mono" id="explanation_text">
                         <p>現在の学期の出席率を確認できます。</p>
                         <p>また、マイページのボタンから出席と早退をすることが出来ます。</p>
                     </div>

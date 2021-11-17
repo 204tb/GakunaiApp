@@ -40,14 +40,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                         <table class="table container">
                             <th>クラス</th>
                             <th>生徒番号</th>
+                            <th>ユーザー名</th>
                             <tr>
                                 <td><?= $user['classes_id']?></td>
                                 <td><?= $user['student_id']?></td>
+                                <td><?= $user['student_name']?></td>
                             </tr>
                         </table>
 
                 <form action="" method="post">
-                    <div class="row container ml-5" style="width:100%;position:fixed;top:70%;">
+                    <div class="row container ml-4" style="width:100%;position:fixed;top:70%;">
                         <button class="w-50 btn col-3 btn-primary btn-block mr-5" name="attendance" onClick="return confirm('出席しますか?')">出席</button>
                         <button class="w-50 btn col-3 btn-danger mr-5" name="leave_early"onClick="return confirm('早退しますか?')">早退</button>
                         <button class="w-50 btn col-3 btn-success mr-5" name="attendance_rate">出席率</button>
