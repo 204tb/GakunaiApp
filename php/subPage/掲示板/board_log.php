@@ -185,7 +185,7 @@
                                 <label for="title">タイトル</label>
 
                                 <div>
-                                <select name="reply_data" id="" class="form-control bg-info text-white" style="width: 89%;;">
+                                <select name="reply_data" id="" class="form-control bg-info text-white" style="width: 89%;">
                                 <!--タイトルタグを使って投稿を管理-->
 
                                 <?php foreach($posts_10 as $title):?>
