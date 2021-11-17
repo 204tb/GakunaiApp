@@ -163,19 +163,54 @@
         $page_start=$page_numbers-4;
     }
 ?>
+
     <div class="mt-5 pagination container d-flex justify-content-center">
-        <?php echo '<button class="btn btn-primary mr-5 page-item"><a href ="./board_log.php?page_num='.($previous).'" style="color:white;">'."前へ".'</a></button>'?>
+        <?php echo '<button class="btn btn-primary mr-5 mb-3 page-item"><a href ="./board_log.php?page_num='.($previous).'" style="color:white;">'."前へ".'</a></button>'?>
         <div class="buttons" style="text-align: center;">
             <?php for($i=$page_start;$i<=$page_amount;$i++){
 
-                echo '<button class="btn btn-primary mr-5 page-item"><a href ="./board_log.php?page_num='.$i.'" style="color:white;">'.$i.'</a></button>';
+                echo '<button class="btn btn-primary mr-5 mb-3 page-item"><a href ="./board_log.php?page_num='.$i.'" style="color:white;">'.$i.'</a></button>';
             }
             ?>
         </div>
 
-        <?php echo '<button class="btn btn-primary mr-2 page-item "><a href ="./board_log.php?page_num='.($next).'" style="color:white;">'."次へ".'</a></button>'?>
+        <?php echo '<button class="btn btn-primary mr-2 mb-3 page-item "><a href ="./board_log.php?page_num='.($next).'" style="color:white;">'."次へ".'</a></button>'?>
     </div>
+    <div class="reply_form container">
+                <form action="board_reply.php" method="post" class ="mar_t10">
+                    <div id="mar_t10" class="alert-primary pb-sm-1 pt-sm-5 mb-4 border_radius">
+                        <h4 class="mb-5 ml-5">投稿に返信</h4>
+                        <div class="contents">
+                            <div class="marl-10p">
+                                <label for="title">タイトル</label>
 
+                                <div>
+                                <select name="reply_data" id="" class="form-control bg-info text-white" style="width: 89%;">
+                                <!--タイトルタグを使って投稿を管理-->
+
+                                <?php foreach($posts_10 as $title):?>
+                                    <option value='<?=$title["title"]?>,<?=$title["name"]?>,<?=$title["date"]?>'>投稿者:<?=$title["name"];?>　タイトル:<?=$title["title"]?>　日時:<?=$title["date"]?></option>
+                                <?php endforeach;?>
+                                
+                                </select>
+
+                                </div>
+                                <br>
+                            </div>
+                            <div class="marl-10p" style="width:100%;">
+                                <label for="text">投稿内容</label>
+                                <span style="color:red;" class ="mar-lef4e"><?=$_SESSION["errors"]["text"]?></span>
+                                <textarea rows="8" cols="20"  type="text" name="reply" maxlength="80" class=" inputConfig form-control" id="text" style="width:80%;"></textarea>
+                            </div>
+
+
+                        </div>
+
+                        <button type="submit" class="mt-3 mar_b3 btn btn-info btn-pos btn-block marl-10p mt-5" name="btn" style="width:80%;" id ="board_submit" onclick="return input_confirm()">送信</button>
+
+                    </div>
+                </form>
+            </div>
 
 </body>
 </html>

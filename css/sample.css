@@ -1,4 +1,9 @@
 @charset "UTF-8";
+@media screen and (min-width:992px) and (max-width:1600px){
+    .row .left_m4{
+        margin-left: 10em!important;
+    }
+}
 /*余白の初期化とフォントサイズの変更*/
 *{
     margin: 0;
@@ -12,10 +17,7 @@ body{
     border-right:solid gainsboro 0.1em;
 }
 
-@media (min-width:1600px) {
 
-
-}
 
 .container p{
     padding-left: 1em;
@@ -29,6 +31,7 @@ body{
 .title_pos a{
     color: white;
 }
+
 
 /*ヘッダーの設定*/
 .itembar{/*周り10pxの間隔を開ける  字は白*/
