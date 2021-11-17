@@ -10,10 +10,15 @@ require_once('../Components/user_check.php');
 //pdo変数
 $pdo_attendance = Attendance();
 
+$header = ["教科","出席率"];
+
+$message;
+
 //出席率データを取得
 $attendance_rate = Get_Attendance_rate($pdo_attendance,$user);
-
-$header = [1,2];
+if(empty($attendance_rate)){
+    $message = "出席率が更新されていません";
+}
 
 //1週間以内の出席率データを教科ごとに1つずつ取得
 function Get_Attendance_rate($pdo,$user)
@@ -54,7 +59,6 @@ function Get_Attendance_rate($pdo,$user)
                 }
             }   
         }
-        var_dump($array);
         return $array;
     }catch (PDOException $e) {
         header('../error_page.php');
@@ -71,9 +75,11 @@ function Get_Attendance_rate($pdo,$user)
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="rate.css">
     <title>出席率</title>
 </head>
 <body>
+    <h1><?= $message ?><h1>
     <table class="mt-5"style="top:15%;">
         <?php foreach($attendance_rate as $key => $value): ?>
             <!-- ヘッダー　-->
