@@ -163,7 +163,20 @@
         $page_start=$page_numbers-4;
     }
 ?>
-            <div class="reply_form container">
+
+    <div class="mt-5 pagination container d-flex justify-content-center">
+        <?php echo '<button class="btn btn-primary mr-5 mb-3 page-item"><a href ="./board_log.php?page_num='.($previous).'" style="color:white;">'."前へ".'</a></button>'?>
+        <div class="buttons" style="text-align: center;">
+            <?php for($i=$page_start;$i<=$page_amount;$i++){
+
+                echo '<button class="btn btn-primary mr-5 mb-3 page-item"><a href ="./board_log.php?page_num='.$i.'" style="color:white;">'.$i.'</a></button>';
+            }
+            ?>
+        </div>
+
+        <?php echo '<button class="btn btn-primary mr-2 mb-3 page-item "><a href ="./board_log.php?page_num='.($next).'" style="color:white;">'."次へ".'</a></button>'?>
+    </div>
+    <div class="reply_form container">
                 <form action="board_reply.php" method="post" class ="mar_t10">
                     <div id="mar_t10" class="alert-primary pb-sm-1 pt-sm-5 mb-4 border_radius">
                         <h4 class="mb-5 ml-5">投稿に返信</h4>
@@ -172,7 +185,7 @@
                                 <label for="title">タイトル</label>
 
                                 <div>
-                                <select name="reply_data" id="">
+                                <select name="reply_data" id="" class="form-control bg-info text-white" style="width: 89%;;">
                                 <!--タイトルタグを使って投稿を管理-->
 
                                 <?php foreach($posts_10 as $title):?>
@@ -198,19 +211,6 @@
                     </div>
                 </form>
             </div>
-    <div class="mt-5 pagination container d-flex justify-content-center">
-        <?php echo '<button class="btn btn-primary mr-5 mb-3 page-item"><a href ="./board_log.php?page_num='.($previous).'" style="color:white;">'."前へ".'</a></button>'?>
-        <div class="buttons" style="text-align: center;">
-            <?php for($i=$page_start;$i<=$page_amount;$i++){
-
-                echo '<button class="btn btn-primary mr-5 mb-3 page-item"><a href ="./board_log.php?page_num='.$i.'" style="color:white;">'.$i.'</a></button>';
-            }
-            ?>
-        </div>
-
-        <?php echo '<button class="btn btn-primary mr-2 mb-3 page-item "><a href ="./board_log.php?page_num='.($next).'" style="color:white;">'."次へ".'</a></button>'?>
-    </div>
-
 
 </body>
 </html>
