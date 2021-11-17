@@ -12,7 +12,7 @@ $pdo_attendance = Attendance();
 
 $header = ["教科","出席率"];
 
-$message;
+$message="出席率一覧";
 
 //出席率データを取得
 $attendance_rate = Get_Attendance_rate($pdo_attendance,$user);
@@ -75,27 +75,33 @@ function Get_Attendance_rate($pdo,$user)
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="rate.css">
     <title>出席率</title>
 </head>
-<body>
-    <h1><?= $message ?><h1>
-    <table class="mt-5"style="top:15%;">
+<body class="bg-lsBlue">
+<?php include("../Components/load_js.php")?>
+<?php include("../Components/nav.php")?>
+<div class="container">
+    <h3 class="mt-5"><?= $message ?></h3>
+    <table class="mt-5 table container" style="top:15%;">
         <?php foreach($attendance_rate as $key => $value): ?>
             <!-- ヘッダー　-->
             <?php if ($key == array_key_first($attendance_rate)): ?>
-                <tr>
+                <tr class="table-info">
                     <?php for ($index = 0 ; $index < 2 ; $index++): ?>
-                        <th style="width:10%";><?= $header[$index]?></th>
+                        <th style="width:10%"; class="text-dark"><?= $header[$index]?></th>
                     <?php endfor; ?>
                 </tr>
             <?php endif; ?>
             <!-- データ -->
-            <tr>
+            <tr class="table-light">
                 <td><?= $value['timetable_subjects_id']?></td>
                 <td><?= $value['rate']?></td>
             </tr>
         <?php endforeach; ?>
      </table>
+</div>
+
 </body>
 </html>
