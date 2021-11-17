@@ -13,7 +13,7 @@ $pdo_attendance = Attendance();
 //出席率データを取得
 $attendance_rate = Get_Attendance_rate($pdo_attendance,$user);
 
-$header = [1,2,3,4,5,6,7,8,9];
+$header = [1,2];
 
 //1週間以内の出席率データを教科ごとに1つずつ取得
 function Get_Attendance_rate($pdo,$user)
@@ -28,25 +28,31 @@ function Get_Attendance_rate($pdo,$user)
         //配列を初期化
         $array = array();
         foreach($attendance_rate as $rate){
+            if(empty($array)){
+              $array += array($rate['id'] => $rate);
+            }
+        
             if(!empty($array)){
                 foreach($array as $key => $value){
                     //同じ教科の出席率データが存在したら
                     if($value['timetable_subjects_id'] == $rate['timetable_subjects_id']){
                         //直近に更新されたデータに置き換え
-                        $v_date = new DateTime($value['update_time']);
-                        $r_date = new DateTime($rate['update_time']);
-                        if($v_date < $r_date){
-                            //$value['update_time'] = "dgfgjy";
+                        $value_date = new DateTime($value['update_time']);
+                        $rate_date = new DateTime($rate['update_time']);
+                        //rate_dateの時間のほうが新しい場合
+                        if($value_date < $rate_date){
+                            //データを最新のものに置き換える
+                            $array[$key] = $rate;
+                            break;
+                        }
+                    //同じ教科が存在しないまま配列が最後まで到達したら
+                    }else{
+                        if ($key == array_key_last($array)){
+                            $array += array($rate['id'] => $rate);
                         }
                     }
-                    //同じ教科が存在しないまま配列が最後まで到達したら
-                    if ($key == array_key_last($array)){
-                        $array += array($rate['id'] => $rate);
-                    }
                 }
-            }else{    
-                $array += array($rate['id'] => $rate);
-            }
+            }   
         }
         var_dump($array);
         return $array;
@@ -68,7 +74,6 @@ function Get_Attendance_rate($pdo,$user)
     <title>出席率</title>
 </head>
 <body>
-    <h1>aiueo</h1>
     <table class="mt-5"style="top:15%;">
         <?php foreach($attendance_rate as $key => $value): ?>
             <!-- ヘッダー　-->
@@ -83,7 +88,6 @@ function Get_Attendance_rate($pdo,$user)
             <tr>
                 <td><?= $value['timetable_subjects_id']?></td>
                 <td><?= $value['rate']?></td>
-                <td><?= $value['update_time']?></td>
             </tr>
         <?php endforeach; ?>
      </table>
