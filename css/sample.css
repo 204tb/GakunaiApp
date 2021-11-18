@@ -305,7 +305,7 @@ body{
 }
 @media screen and (min-width:992px){
     .ref_992{
-        margin-left: 10em!important;
+        margin-left: 8em!important;
     }
 }
 @media screen and (max-width:992px) {

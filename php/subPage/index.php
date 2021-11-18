@@ -20,7 +20,7 @@ if(!empty($_SESSION["user"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/sample.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <title>サイトメニュー</title>
+    <title>トップ</title>
 </head>
 
 <script src ="../../js/jquery-3.6.0.min.js"></script>
@@ -38,7 +38,7 @@ if(!empty($_SESSION["user"])){
     </button>
     <div class="collapse navbar-collapse" id="contents">
 
-            <span class="row">
+            <span class="row ref_992">
             <a class="nav-link row ml-1" href="出席管理/my_page.php" style="color:white;">マイページ</a>
             <a class="nav-link row ml-5" href="時間割/Timeable.php" style="color:white";>時間割</a>
             <a class="nav-link row ml-5" href="掲示板/board.php" style="color:white";>掲示板</a>
