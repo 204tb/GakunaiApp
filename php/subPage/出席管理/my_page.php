@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <div class="">
         <?php include("../Components/nav.php")?>
             <div class="container">
-                    <h2 class="mb-5 container">学生情報</h2>
+                    <h2 class="mb-5 container mt-5" style="margin-left: -0.5em;">学生情報</h2>
                         <table class="table container">
                             <th>クラス</th>
                             <th>生徒番号</th>
@@ -47,7 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                                 <td><?= $user['student_name']?></td>
                             </tr>
                         </table>
-
                 <form action="" method="post">
                     <div class="row container ml-4" style="width:100%;position:fixed;top:70%;">
                         <button class="w-50 btn col-3 btn-primary btn-block mr-5" name="attendance" onClick="return confirm('出席しますか?')">出席</button>

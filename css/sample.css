@@ -28,7 +28,9 @@ body{
 .title_pos a{
     color: white;
 }
-
+.title_font_size{
+    font-size: 30;
+}
 
 /*ヘッダーの設定*/
 .itembar{/*周り10pxの間隔を開ける  字は白*/
@@ -300,3 +302,14 @@ body{
 .inputConfig{
     height: 4em;
 }
+@media screen and (min-width:992px){
+    .ref_992{
+        margin-left: 10em!important;
+    }
+}
+@media screen and (max-width:992px) {
+    .ref_992{
+        margin-left: 0!important;
+    }
+}
+
