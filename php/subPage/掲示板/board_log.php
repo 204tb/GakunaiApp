@@ -5,8 +5,6 @@
     $logs_all =[];
     $posts_10 = [];//投稿を10件格納する配列
     $PAGE_MAX=10;
-    $now_data_max =max_id($pdo)+10;//現在の最大idの取得
-    $page_numbers =ceil($now_data_max/10);
 
     //現在のページの取得
     if(!isset($_GET["page_num"])){
@@ -20,7 +18,7 @@
     
     //直近10件を降順で表示
     //$_SESSIONに登録することでシリアル化エラーが出る(後で修正)
-    $post_all = get_post_all($pdo);//投稿を全て取得して、セッションに登録
+    $post_all = get_post_all($pdo);//投稿を全て取得
     $data_count = get_count($pdo);//投稿数を取得(削除済み投稿を含まない)
 
 
@@ -37,6 +35,9 @@
             break;
         }
     }   
+    $now_data_max =count($logs_all);//現在の最大idの取得
+    $page_numbers =ceil($now_data_max/10);//最終ページの番号
+
 
 
 
@@ -127,6 +128,7 @@
     if($previous<1){
         $previous =1;
     }
+
     if($next>$page_numbers){
         $next = $page_numbers;
     }
