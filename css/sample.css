@@ -202,13 +202,14 @@ body{
 .bg-lsBlue{
     background-color: rgb(244, 251, 255);
 }
-/*アニメーションの追加*/
 
+/*アニメーションの追加*/
+/*
 .subTitle_fadein{
     font-size: 40;
     opacity: 0;
     animation-name: subtitle01;
-    animation-duration: 1s;/*動作秒数*/
+    animation-duration: 1s;
     animation-fill-mode: forwards;
 
 }
@@ -219,16 +220,16 @@ body{
     }
 
     100%{
-        opacity: 1;/*透明から見えるように変更*/
+        opacity: 1;
         transform: translateX(0);
     }
 }
-/*時間をずらす用*/
+
 .subTitle_fadein2{
     font-size: 40;
     opacity: 0;
     animation-name: subtitle02;
-    animation-duration: 1.4s;/*動作秒数*/
+    animation-duration: 1.4s;
     animation-fill-mode: forwards;
 
 }
@@ -239,7 +240,7 @@ body{
     }
 
     100%{
-        opacity: 1;/*透明から見えるように変更*/
+        opacity: 1;
         transform: translateX(0);
     }
 }
@@ -247,7 +248,7 @@ body{
     font-size: 40;
     opacity: 0;
     animation-name: subtitle03;
-    animation-duration: 1.8s;/*動作秒数*/
+    animation-duration: 1.8s;
     animation-fill-mode: forwards;
 
 }
@@ -258,7 +259,7 @@ body{
     }
 
     100%{
-        opacity: 1;/*透明から見えるように変更*/
+        opacity: 1;
         transform: translateX(0);
     }
 }
@@ -266,7 +267,7 @@ body{
     font-size: 40;
     opacity: 0;
     animation-name: subtitle04;
-    animation-duration: 2.2s;/*動作秒数*/
+    animation-duration: 2.2s;
     animation-fill-mode: forwards;
 
 }
@@ -277,10 +278,10 @@ body{
     }
 
     100%{
-        opacity: 1;/*透明から見えるように変更*/
+        opacity: 1;
         transform: translateX(0);
     }
-}
+}*/
 
 /*セレクトボックスの設定*/
 #ClassName{
