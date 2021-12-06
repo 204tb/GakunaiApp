@@ -5,15 +5,38 @@
     $logs_all =[];
     $posts_10 = [];//投稿を10件格納する配列
     $PAGE_MAX=10;
+    if(!isset($_SESSION["reply"])){
+        $_SESSION["reply"]=false;//返信判定用のフラグ
+    }
 
+    if(empty($_SESSION["errors"])){
+        $_SESSION["errors"]=[
+            "title" => "",
+            "text" => ""
+        ];
+
+    }
     //現在のページの取得
     if(!isset($_GET["page_num"])){
         $current_page=1;
     }else{
         $current_page=$_GET["page_num"];
     }
-    $_SESSION["current_page"]=$current_page;
+    if(isset($_SESSION["current_page"])){//前回のページのインデックスが残っている場合
+
+    }
+    if($_SESSION["reply"]){//返信をしていた場合
+        $current_page = $_SESSION["current_page"];
+        $_SESSION["current_page"]="";
+        $_SESSION["reply"] = false;
+    }
+    $_SESSION["current_page"]=$current_page;//現在の投稿をセッションに保持
+
+
     $paging_id = (($current_page-1)*$PAGE_MAX);//開始indexの作成
+    $db_cnt = get_rows_cnt($pdo);
+    if($db_cnt>0){
+
 
 
     
@@ -38,6 +61,8 @@
     }   
     $now_data_max =count($logs_all);//現在の最大idの取得
     $page_numbers =ceil($now_data_max/10);//最終ページの番号
+    }
+
 
 
 
@@ -64,66 +89,71 @@
 
 <h3 class="mb-5">過去投稿一覧　　<?=$current_page?>ページ目</h3>
     <!--古い順に表示-->
-    <div class ="textview board_color">
-        <!--ページング処理を追加する-->
-        <div class ="post card">
-            <ul class="list-group">
-                <?php foreach($posts_10 as $value):?>
-                        
-                    <li class="list-group-item pb-5">
-                        <span><span class="ml-5 float-right board_date"><?=$value["date"]?></span><span class="name_pos">投稿者:<?=$value["name"]?></span></span>
-                        <div>
-                            <label class="board_title marl-5p"><?=$value["title"]?></label>
-                        </div>
-                            <span class="board_text marl-5p"><?=$value["text"]?></span>
-                        <!--リプライを取得-->
-                        <?php $reply = get_reply($pdo,$value["title"],$value["name"],$value["date"]);?>
-                            <!--$replyから　日付を取得して投稿を区別-->
+    <?php if($db_cnt>0):?>
+        <div class ="textview board_color">
+            <!--ページング処理を追加する-->
+            <div class ="post card">
+                <ul class="list-group">
+                    <?php foreach($posts_10 as $value):?>
+                            
+                        <li class="list-group-item pb-5">
+                            <span><span class="ml-5 float-right board_date"><?=$value["date"]?></span><span class="name_pos">投稿者:<?=$value["name"]?></span></span>
+                            <div>
+                                <label class="board_title marl-5p"><?=$value["title"]?></label>
+                            </div>
+                                <span class="board_text marl-5p"><?=$value["text"]?></span>
+                            <!--リプライを取得-->
+                            <?php $reply = get_reply($pdo,$value["title"],$value["name"],$value["date"]);?>
+                                <!--$replyから　日付を取得して投稿を区別-->
 
-                            <!--投稿に返信がある場合表示する-->
-                            <?php if(is_array($reply) && count($reply) >0):?>
-                                <!--ボタンのnameを定義-->
-                                <?php $date = new DateTime($value["date"]);
-                                      $str_date = $date->format("Y-m-d-H-i-s");//string型に変換
-                                ?>
-                                <?php $btn_name = "reply_chack".$value["title"].$value["name"].$str_date?><!--返信用のボタンを追加-->
-                                <?php $reply_name = "reply".$value["title"].$value["name"].$str_date?>
+                                <!--投稿に返信がある場合表示する-->
+                                <?php if(is_array($reply) && count($reply) >0):?>
+                                    <!--ボタンのnameを定義-->
+                                    <?php $date = new DateTime($value["date"]);
+                                        $str_date = $date->format("Y-m-d-H-i-s");//string型に変換
+                                    ?>
+                                    <?php $btn_name = "reply_chack".$value["title"].$value["name"].$str_date?><!--返信用のボタンを追加-->
+                                    <?php $reply_name = "reply".$value["title"].$value["name"].$str_date?>
 
-                                <div class="<?=$reply_name?> text-left list-group-item">
-                                    <?php foreach($reply as $rp):?>
-                                                <p class="mb-1">返信者:<?=$rp["name"]?></p>
-                                                <p class="ml-5"><?=$rp["reply"]?></p>
-                                                <p class="mt-1"><?=$rp["date"]?></p>
-                                                <p style="border-bottom: 0.01em solid black;"></p>
-                                                
-                                    <?php endforeach;?>   
-                              
-                                </div>
-
+                                    <div class="<?=$reply_name?> text-left list-group-item">
+                                        <?php foreach($reply as $rp):?>
+                                                    <p class="mb-1">返信者:<?=$rp["name"]?></p>
+                                                    <p class="ml-5"><?=$rp["reply"]?></p>
+                                                    <p class="mt-1"><?=$rp["date"]?></p>
+                                                    <p style="border-bottom: 0.01em solid black;"></p>
+                                                    
+                                        <?php endforeach;?>   
                                 
-                                <button class="<?=$btn_name?> float-right btn btn-primary mt-2">返信一覧</button>
-                                <script>
+                                    </div>
 
-                                    $(".<?=$reply_name?>").hide();//返信を隠す  
-                                    $(".<?=$btn_name?>").click(function(){//
-                                        $(".<?=$reply_name?>").toggle(450);//表示非表示を切替
-                                    });
+                                    
+                                    <button class="<?=$btn_name?> float-right btn btn-primary mt-2">返信一覧</button>
+                                    <script>
 
-                                </script>
-                            <?php endif;?>
+                                        $(".<?=$reply_name?>").hide();//返信を隠す  
+                                        $(".<?=$btn_name?>").click(function(){//
+                                            $(".<?=$reply_name?>").toggle(450);//表示非表示を切替
+                                        });
+
+                                    </script>
+                                <?php endif;?>
 
 
 
-                    </li>
+                        </li>
 
-                    <?php endforeach;?>
-            </ul>
+                        <?php endforeach;?>
+                </ul>
+
+            </div>
+
 
         </div>
-
-
-    </div>
-    </div>
+    <?php endif?>
+    <?php if($db_cnt<=0):?>
+        <div>現在投稿はありません</div>
+    <?php endif?>
+</div>
 
     <?php $previous = ($current_page-1);$next =($current_page+1);
     if($previous<1){
@@ -179,6 +209,7 @@
 
         <?php echo '<button class="btn btn-primary mr-2 mb-3 page-item "><a href ="./board_log.php?page_num='.($next).'" style="color:white;">'."次へ".'</a></button>'?>
     </div>
+    <?php if($db_cnt>0):?>
     <div class="reply_form container">
                 <form action="board_reply.php" method="post" class ="mar_t10">
                     <div id="mar_t10" class="alert-primary pb-sm-1 pt-sm-5 mb-4 border_radius">
@@ -214,6 +245,7 @@
                     </div>
                 </form>
     </div>
+    <?php endif?>
     <?php $_SESSION["errors"]="";?>
 
 </body>

@@ -46,6 +46,11 @@
         $stmt=$pdo->query($sql);
         return $stmt->fetch();
     }
+    function get_rows_cnt($pdo){
+        $sql ="SELECT count(*) FROM userlog";
+        $stmt = $pdo->query($sql);
+        return $stmt->fetch();
+    }
 
 
 ?>
