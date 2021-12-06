@@ -35,34 +35,34 @@
 
     $paging_id = (($current_page-1)*$PAGE_MAX);//開始indexの作成
     $db_cnt = get_rows_cnt($pdo);
-    if($db_cnt>0){
 
-
-
-    
+    if($db_cnt[0]>0){
     //直近10件を降順で表示
-    //$_SESSIONに登録することでシリアル化エラーが出る(後で修正)
-    $post_all = get_post_all($pdo);//投稿を全て取得
-    $data_count = get_count($pdo);//投稿数を取得(削除済み投稿を含まない)
+        //$_SESSIONに登録することでシリアル化エラーが出る(後で修正)
+        $post_all = get_post_all($pdo);//投稿を全て取得
+        $data_count = get_count($pdo);//投稿数を取得(削除済み投稿を含まない)
 
 
-    while($data =$post_all->fetch()){
-        $logs_all[]=$data;
+        while($data =$post_all->fetch()){
+            $logs_all[]=$data;
+        }
+
+        for($i = $paging_id;$i< $paging_id+10;$i++){//10件取得
+            if($logs_all[$i]["delete_flag"] ==1){//削除済み投稿であればスキップ
+                continue;
+            }
+            $posts_10[] = $logs_all[$i];//全ての投稿から10件取得
+            if($i==$data_count[0]-1){
+                break;
+            }
+        }   
+        $now_data_max =count($logs_all);//現在の最大idの取得
+
     }
-
-    for($i = $paging_id;$i< $paging_id+10;$i++){//10件取得
-        if($logs_all[$i]["delete_flag"] ==1){//削除済み投稿であればスキップ
-            continue;
-        }
-        $posts_10[] = $logs_all[$i];//全ての投稿から10件取得
-        if($i==$data_count[0]-1){
-            break;
-        }
-    }   
-    $now_data_max =count($logs_all);//現在の最大idの取得
     $page_numbers =ceil($now_data_max/10);//最終ページの番号
+    if($page_numbers<=0){
+        $page_numbers=1;
     }
-
 
 
 
@@ -89,7 +89,7 @@
 
 <h3 class="mb-5">過去投稿一覧　　<?=$current_page?>ページ目</h3>
     <!--古い順に表示-->
-    <?php if($db_cnt>0):?>
+    <?php if($db_cnt[0]>0):?>
         <div class ="textview board_color">
             <!--ページング処理を追加する-->
             <div class ="post card">
@@ -150,32 +150,34 @@
 
         </div>
     <?php endif?>
-    <?php if($db_cnt<=0):?>
+    <?php if($db_cnt[0]<=0):?>
         <div>現在投稿はありません</div>
     <?php endif?>
 </div>
-
+    
     <?php $previous = ($current_page-1);$next =($current_page+1);
-    if($previous<1){
-        $previous =1;
-    }
 
-    if($next>$page_numbers){
+
+    //ページ範囲を超えた場合
+    if($previous<=0){
+        $previous=1;
+    }
+    if($next> $page_numbers){
         $next = $page_numbers;
     }
-    
-    
+    //ページ上限、下限の設定
     $page_start=$current_page-2;//現在のページの2個前まで
-    $page_amount = $current_page+2;//現在のページから2つ後まで
- 
     if($page_start<1){
         $page_start=1;
     }
+    $page_amount = $current_page+2;//現在のページから2つ後まで
     if($page_amount>$page_numbers){
         $page_amount=$page_numbers;
     }
+ 
+
     //不足ページを追加
-    if($current_page==1){
+    /*if($current_page==1){
         $page_amount=$current_page+4;
     }
     if($current_page==2){
@@ -186,6 +188,7 @@
     }
     
     //不足ページを追加
+    
     if($current_page==$page_numbers){
         $page_start=$page_numbers-4;
     }
@@ -194,22 +197,23 @@
     }
     if($current_page==$page_numbers-2){
         $page_start=$page_numbers-4;
-    }
+    }*/
 ?>
+    <?php if($db_cnt[0]>0):?>
+        <div class="mt-5 pagination container d-flex justify-content-center">
+            <?php echo '<button class="btn btn-primary mr-5 mb-3 page-item"><a href ="./board_log.php?page_num='.($previous).'" style="color:white;">'."前へ".'</a></button>'?>
+            <div class="buttons" style="text-align: center;">
+                <?php for($i=$page_start;$i<=$page_amount;$i++){
 
-    <div class="mt-5 pagination container d-flex justify-content-center">
-        <?php echo '<button class="btn btn-primary mr-5 mb-3 page-item"><a href ="./board_log.php?page_num='.($previous).'" style="color:white;">'."前へ".'</a></button>'?>
-        <div class="buttons" style="text-align: center;">
-            <?php for($i=$page_start;$i<=$page_amount;$i++){
+                    echo '<button class="btn btn-primary mr-5 mb-3 page-item"><a href ="./board_log.php?page_num='.$i.'" style="color:white;">'.$i.'</a></button>';
+                }
+                ?>
+            </div>
 
-                echo '<button class="btn btn-primary mr-5 mb-3 page-item"><a href ="./board_log.php?page_num='.$i.'" style="color:white;">'.$i.'</a></button>';
-            }
-            ?>
+            <?php echo '<button class="btn btn-primary mr-2 mb-3 page-item "><a href ="./board_log.php?page_num='.($next).'" style="color:white;">'."次へ".'</a></button>'?>
         </div>
-
-        <?php echo '<button class="btn btn-primary mr-2 mb-3 page-item "><a href ="./board_log.php?page_num='.($next).'" style="color:white;">'."次へ".'</a></button>'?>
-    </div>
-    <?php if($db_cnt>0):?>
+    <?php endif?>
+    <?php if($db_cnt[0]>0):?>
     <div class="reply_form container">
                 <form action="board_reply.php" method="post" class ="mar_t10">
                     <div id="mar_t10" class="alert-primary pb-sm-1 pt-sm-5 mb-4 border_radius">
@@ -246,6 +250,7 @@
                 </form>
     </div>
     <?php endif?>
+
     <?php $_SESSION["errors"]="";?>
 
 </body>
