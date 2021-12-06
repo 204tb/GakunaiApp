@@ -12,6 +12,7 @@
     }else{
         $current_page=$_GET["page_num"];
     }
+    $_SESSION["current_page"]=$current_page;
     $paging_id = (($current_page-1)*$PAGE_MAX);//開始indexの作成
 
 
@@ -212,7 +213,8 @@
 
                     </div>
                 </form>
-            </div>
+    </div>
+    <?php $_SESSION["errors"]="";?>
 
 </body>
 </html>
