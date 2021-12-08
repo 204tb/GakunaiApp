@@ -5,6 +5,7 @@
     $logs_all =[];
     $posts_10 = [];//投稿を10件格納する配列
     $PAGE_MAX=10;
+    $get_count = get_count($pdo);//削除済み投稿を除く
     if(!isset($_SESSION["reply"])){
         $_SESSION["reply"]=false;//返信判定用のフラグ
     }
@@ -16,14 +17,17 @@
         ];
 
     }
+
+    
     //現在のページの取得
     if(!isset($_GET["page_num"])){
         $current_page=1;
     }else{
-        $current_page=$_GET["page_num"];
-    }
-    if(isset($_SESSION["current_page"])){//前回のページのインデックスが残っている場合
-
+        if(intval($_GET["page_num"])<=ceil($get_count[0]/10)){
+            $current_page=$_GET["page_num"];
+        }else{
+            $current_page=ceil($get_count[0]/10);
+        }
     }
     if($_SESSION["reply"]){//返信をしていた場合
         $current_page = $_SESSION["current_page"];
@@ -35,7 +39,9 @@
 
     $paging_id = (($current_page-1)*$PAGE_MAX);//開始indexの作成
     $db_cnt = get_rows_cnt($pdo);
-
+    if($db_cnt[0] <=0){
+        header("Location:board.php");
+    }
     if($db_cnt[0]>0){
     //直近10件を降順で表示
         //$_SESSIONに登録することでシリアル化エラーが出る(後で修正)
@@ -59,7 +65,12 @@
         $now_data_max =count($logs_all);//現在の最大idの取得
 
     }
+
     $page_numbers =ceil($now_data_max/10);//最終ページの番号
+    if(!isset($_SESSION["page_num"])){
+        $_SESSION["page_num"] = $page_numbers;
+    }
+    
     if($page_numbers<=0){
         $page_numbers=1;
     }

@@ -46,6 +46,12 @@
         $stmt=$pdo->query($sql);
         return $stmt->fetch();
     }
+    function get_count_all($pdo){
+        $sql = "SELECT count(*) as cnt FROM userlog";//削除済みでない投稿を全て取得するsql
+        $stmt=$pdo->query($sql);
+        return $stmt->fetch();
+    }
+    
     function get_rows_cnt($pdo){
         $sql ="SELECT count(*) FROM userlog";
         $stmt = $pdo->query($sql);
