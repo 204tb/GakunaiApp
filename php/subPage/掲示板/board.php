@@ -200,6 +200,7 @@
                                         <option value='<?=$title["title"]?>,<?=$title["name"]?>,<?=$title["date"]?>'>投稿者:<?=$title["name"];?>　タイトル:<?=$title["title"]?>　日時:<?=$title["date"]?></option>
                                     <?php endforeach;?>
                                     
+                                    
                                     </select>
 
                                     </div>
@@ -219,9 +220,10 @@
                         </div>
                     </form>
                 </div>
-                <?php endif?>
+
             </div>
             <button type="button" class="mt-3 mar_b3 btn btn-success btn-pos btn-block  mt-5 form_btn">投稿返信切替</button>
+            <?php endif?>
 
     </div>
 
