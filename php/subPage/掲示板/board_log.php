@@ -181,34 +181,26 @@
     if($page_start<1){
         $page_start=1;
     }
+    
     $page_amount = $current_page+2;//現在のページから2つ後まで
     if($page_amount>$page_numbers){
         $page_amount=$page_numbers;
     }
- 
-
-    //不足ページを追加
-    /*if($current_page==1){
-        $page_amount=$current_page+4;
+    //不足ページの補充
+    if($current_page==1){
+        $page_amount+=2;
     }
     if($current_page==2){
-        $page_amount=$current_page+3;
+        $page_amount++;
     }
-    if($current_page==3){
-        $page_amount=$current_page+2;
-    }
-    
-    //不足ページを追加
-    
     if($current_page==$page_numbers){
-        $page_start=$page_numbers-4;
+        $page_start-=2;
     }
     if($current_page==$page_numbers-1){
-        $page_start=$page_numbers-4;
+        $page_start--;
     }
-    if($current_page==$page_numbers-2){
-        $page_start=$page_numbers-4;
-    }*/
+
+
 ?>
     <?php if($db_cnt[0]>0):?>
         <div class="mt-5 pagination container d-flex justify-content-center">
