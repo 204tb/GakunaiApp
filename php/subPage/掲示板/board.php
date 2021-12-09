@@ -173,7 +173,7 @@
                                 <div class="marl-10p" style="width:100%;">
                                     <label for="text">投稿内容</label>
                                     <span style="color:red;" class ="mar-lef4e"><?=$_SESSION["errors"]["text"]?></span>
-                                    <textarea rows="8" cols="20"  type="text" name="text" maxlength="80" class=" inputConfig form-control" id="text" style="width:80%;"></textarea>
+                                    <textarea rows="8" cols="20"  type="text" name="text" maxlength="140" class=" inputConfig form-control" id="text" style="width:80%;"></textarea>
                                 </div>
 
 
@@ -209,7 +209,7 @@
                                 <div class="marl-10p" style="width:100%;">
                                     <label for="text">投稿内容</label>
                                     <span style="color:red;" class ="mar-lef4e"><?=$_SESSION["errors"]["text"]?></span>
-                                    <textarea rows="8" cols="20"  type="text" name="reply" maxlength="80" class=" inputConfig form-control" id="text" style="width:80%;"></textarea>
+                                    <textarea rows="8" cols="20"  type="text" name="reply" maxlength="140" class=" inputConfig form-control" id="text" style="width:80%;"></textarea>
                                 </div>
 
 

@@ -85,7 +85,7 @@ if(!empty($_SESSION["user"])){
                 <div class ="explanation">
                     <span id="explanation_title" class="explanation_title_board mar-lef4e">機能について</span>
                     <div class="explanation_text_board" id="explanation_text">
-                        <p>タイトルと160字以内の文章を投稿できる掲示板です。投稿内容は直近10件まで確認することが出来ます。</p>
+                        <p>タイトルと140字以内の文章を投稿できる掲示板です。投稿内容は直近10件まで確認することが出来ます。</p>
                         <p>過去の投稿内容全ては別ページから全て確認することが出来ます。</p>
                     </div>
                 </div>
