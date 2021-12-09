@@ -15,7 +15,7 @@
     }
   
     $db_cnt = get_rows_cnt($pdo);
-    var_dump($db_cnt);
+
     if($db_cnt[0]>0){//データベースが空で無い場合
     $current_index =max_id($pdo);//最大値の10個前
 
@@ -24,40 +24,41 @@
     }else{
 
     }
-    var_dump($current_index);
-
-    //直近10件を表示  削除されている投稿があった場合追加で取得
-    $get_check =false;
-        //テーブルの中が10個以下のときの処理を分ける
+        //直近10件を表示  削除されている投稿があった場合追加で取得
+        $get_check =false;
+            //テーブルの中が10個以下のときの処理を分ける
 
 
-        while(count($logs) <10){//要素が10個取得出来ていない場合  無理やり10個取得してしまうためエラーになる
-            $arrays =[];
-            $stmt = get_posts($pdo,$current_index);//投稿を取得
-            while($data =$stmt->fetch()){
-                if($get_check){
-                    $arrays[]=$data;
-                }else{
-                    $logs[]=$data;//
+            while(count($logs) <10){//要素が10個取得出来ていない場合  無理やり10個取得してしまうためエラーになる
+                $arrays =[];
+                $stmt = get_posts($pdo,$current_index);//投稿を取得
+
+                while($data =$stmt->fetch()){
+                    if($get_check){
+                        $arrays[]=$data;
+                    }else{
+                        $logs[]=$data;//
+                    }
                 }
+
+                if($db_cnt[0]<10){break;}
+                $get_check =true;//取得が2回目以降か判断
+                if($get_check){
+                    $logs =array_merge($logs,$arrays);//配列を結合して$logに代入
+                }
+                $current_index-=10;//値の取得位置を10
             }
-            if($db_cnt[0]<10){break;}
-            $get_check =true;//取得が2回目以降か判断
-            if($get_check){
-                $logs =array_merge($logs,$arrays);//配列を結合して$logに代入
+
+            //日付で並び替え　（配列内のdateを使う
+            usort($logs, function($a, $b){
+                return $a["date"] > $b["date"];//最新順にソート
+            });
+            krsort($logs);
+            for($i = count($logs);$i>10;$i--){//配列の中身を10個にする
+                array_pop($logs);//配列の末尾からpop  
             }
-            $current_index-=1;//値の取得位置を10
-        }
-        //日付で並び替え　（配列内のdateを使う
-        usort($logs, function($a, $b){
-            return $a["date"] > $b["date"];//最新順にソート
-        });
-        krsort($logs);
-        for($i = count($logs);$i>10;$i--){//配列の中身を10個にする
-            array_pop($logs);//配列の末尾からpop  
-        }
     }
-    
+
 
 
 

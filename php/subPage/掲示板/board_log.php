@@ -17,6 +17,9 @@
         ];
 
     }
+    if(!isset($_GET["page_num"])){
+        $_GET["page_num"]=1;
+    }
 
     
     //現在のページの取得
@@ -189,17 +192,26 @@
     //不足ページの補充
     if($current_page==1){
         $page_amount+=2;
+
     }
+    if($page_numbers==1){
+        $page_amount=1;
+    }
+    if($page_numbers==2){
+        $page_amount=2;
+    }
+    if($page_start)
     if($current_page==2){
         $page_amount++;
     }
-    if($current_page==$page_numbers){
-        $page_start-=2;
+    if($current_page>=3){
+        if($current_page==$page_numbers){
+            $page_start-=2;
+        }
+        if($current_page==$page_numbers-1){
+            $page_start--;
+        }
     }
-    if($current_page==$page_numbers-1){
-        $page_start--;
-    }
-
 
 ?>
     <?php if($db_cnt[0]>0):?>
