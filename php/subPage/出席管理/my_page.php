@@ -48,11 +48,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
                             </tr>
                         </table>
                 <form action="" method="post">
-                    <div class="row container ml-4" style="width:100%;position:fixed;top:70%;">
-                        <button class="w-50 btn col-3 btn-primary btn-block mr-5" name="attendance" onClick="return confirm('出席しますか?')">出席</button>
+                <div class="row container justify-content-center" style="width:100%;position:fixed;top:70%;">
+                        <button class="w-50 btn col-3 btn-primary mr-5 pt-3 pb-3" name="attendance" onClick="return confirm('出席しますか?')">出席</button>
                         <button class="w-50 btn col-3 btn-danger mr-5" name="leave_early"onClick="return confirm('早退しますか?')">早退</button>
                         <button class="w-50 btn col-3 btn-success mr-5" name="attendance_rate">出席率</button>
-                    </div>
+
                 </form>
             </div>
     </div>

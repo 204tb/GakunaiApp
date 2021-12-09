@@ -63,6 +63,10 @@ body{
 .pad_b1{
     padding-bottom: 1em;
 }
+.pad_tb2{
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
 .mar_b3{/*未解決*/
     margin-bottom: 3em;
 }
@@ -86,9 +90,13 @@ body{
     position: relative;
     left: 9%;
 }
+.mar-lef20{
+    margin-left: 20%;
+}
 .mar-top4e{
     margin-top: 4em;
 }
+
 .marl-5p{
     margin-left: 5%;
 
@@ -103,6 +111,11 @@ body{
 .pos_R{
     position: absolute;
     right: 0;
+}
+.pos_center{
+    position:absolute;
+    inset:0;
+    margin: auto;
 }
 /*色*/
 .col-white{
