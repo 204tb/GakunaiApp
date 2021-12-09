@@ -175,8 +175,7 @@
                                     <span style="color:red;" class ="mar-lef4e"><?=$_SESSION["errors"]["text"]?></span>
                                     <textarea rows="8" cols="20"  type="text" name="text" maxlength="140" class=" inputConfig form-control" id="text" style="width:80%;"></textarea>
                                 </div>
-
-
+                                <input type="hidden" name="board" value="true">
                             </div>
                             <button type="submit" class="mt-3 mar_b3 btn btn-info btn-pos btn-block marl-10p mt-5" name="btn" style="width:80%;" id ="board_submit" onclick="return input_confirm()">送信</button>
 
@@ -212,7 +211,7 @@
                                     <textarea rows="8" cols="20"  type="text" name="reply" maxlength="140" class=" inputConfig form-control" id="text" style="width:80%;"></textarea>
                                 </div>
 
-
+                                <input type="hidden" name="board" value="true">
                             </div>
 
                             <button type="submit" class="mt-3 mar_b3 btn btn-info btn-pos btn-block marl-10p mt-5" name="btn" style="width:80%;" id ="board_submit" onclick="return input_confirm()">送信</button>

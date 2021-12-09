@@ -255,6 +255,11 @@
                                 <span style="color:red;" class ="mar-lef4e"><?=$_SESSION["errors"]["text"]?></span>
                                 <textarea rows="8" cols="20"  type="text" name="reply" maxlength="140" class=" inputConfig form-control" id="text" style="width:80%;"></textarea>
                             </div>
+                            <?php 
+                                $_SESSION["errors"]=[
+                                    "title" => "",
+                                    "text" => ""
+                                ];?>
 
 
                         </div>
