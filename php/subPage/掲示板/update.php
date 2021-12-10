@@ -4,7 +4,8 @@ require_once('../Components/user_check.php');
 
 $_SESSION["errors"]=[
     "title" => "",
-    "text" => ""
+    "text" => "",
+    "reply" =>""
 ];
 
 if(empty($_POST["title"])){

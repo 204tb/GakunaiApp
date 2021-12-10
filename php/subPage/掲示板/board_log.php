@@ -13,7 +13,8 @@
     if(empty($_SESSION["errors"])){
         $_SESSION["errors"]=[
             "title" => "",
-            "text" => ""
+            "text" => "",
+            "reply" => ""
         ];
 
     }
@@ -252,14 +253,10 @@
                             </div>
                             <div class="marl-10p" style="width:100%;">
                                 <label for="text">投稿内容</label>
-                                <span style="color:red;" class ="mar-lef4e"><?=$_SESSION["errors"]["text"]?></span>
+                                <span style="color:red;" class ="mar-lef4e"><?=$_SESSION["errors"]["reply"]?></span>
                                 <textarea rows="8" cols="20"  type="text" name="reply" maxlength="140" class=" inputConfig form-control" id="text" style="width:80%;"></textarea>
                             </div>
-                            <?php 
-                                $_SESSION["errors"]=[
-                                    "title" => "",
-                                    "text" => ""
-                                ];?>
+
 
 
                         </div>
@@ -270,6 +267,14 @@
                 </form>
     </div>
     <?php endif?>
+    <?php
+
+                $_SESSION["errors"]=[
+                    "title" => "",
+                    "text" => "",
+                    "reply" => ""
+                ];
+    ?>
 
     <?php $_SESSION["errors"]="";?>
 
