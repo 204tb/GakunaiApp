@@ -60,7 +60,7 @@
             }
     }
 
-
+    $dlt_data_cnt = get_rows_cnt_notdlt($pdo);
 
 
 ?>
@@ -85,7 +85,7 @@
     <div class="container mt-5">
 
     <h3 class="mb-5">   <span class ="spinner-grow text-info"></span>直近の投稿(最大10件まで表示)</h3>        <div class ="textview">
-            <?php if($db_cnt[0]>0):?>
+            <?php if($db_cnt[0]>0 && $dlt_data_cnt[0]>0):?>
                 <div class ="post card">
                     <ul class="list-group">
                         <?php foreach($logs as $value):?>
@@ -119,8 +119,6 @@
                                         <?php endforeach;?>   
                                 
                                     </div>
-
-                                    
                                     <button class="<?=$btn_name?> float-right btn btn-primary mt-2">返信一覧</button>
                                     <script>
 
@@ -151,7 +149,7 @@
         </div>
         <?php endif;?>
 
-        <?php if($db_cnt[0]<=0):?>
+        <?php if($db_cnt[0]<=0 || $dlt_data_cnt[0]<=0):?>
             <div class="card" style="padding-top: 4em; padding-bottom: 4em;"><p class="ml-2">現在投稿はありません</p></div>
         <?php endif?>
 
@@ -183,7 +181,7 @@
                     </form>
                 </div>
 
-                <?php if($db_cnt[0]>0):?>
+                <?php if($db_cnt[0]>0 && $dlt_data_cnt[0]>0):?>
                 <div class="reply_form">
                     <form action="board_reply.php" method="post" class ="mar_t10">
                         <div id="mar_t10" class="alert-primary pb-sm-1 pt-sm-5 mb-4 border_radius">
