@@ -57,6 +57,11 @@
         $stmt = $pdo->query($sql);
         return $stmt->fetch();
     }
+    function get_rows_cnt_notdlt($pdo){
+        $sql ="SELECT count(*) FROM userlog WHERE delete_flag=0";
+        $stmt = $pdo->query($sql);
+        return $stmt->fetch();
+    }
 
 
 ?>
