@@ -147,8 +147,7 @@
 
 
         <div class="float-right">
-            <p class="mt-5"><a href="board_log.php">全ての投稿を見る</a></p>
-            
+            <p class="mt-5"><a href="board_log.php?page_num=1">全ての投稿を見る</a></p>
         </div>
         <?php endif;?>
 
