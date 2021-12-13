@@ -14,37 +14,36 @@
         "text" => "",
         "reply"=>""
     ];
-    
-    if(empty($_POST["title"])){
+    //データベースに返信が登録されない
+    //
+
+    $pattern="^(\s|　)+$";//空白文字の検索パターン
+    //入力値が空の場合の処理
+
+    if(mb_ereg_match($pattern,$_POST["title"])){
         $_SESSION["errors"]["title"] = "タイトルが入力されていません";
-        $_SESSION["errors"]["text"]="";
-        $_SESSION["errors"]["reply"]="";
     }
-    if(empty($_POST["text"])){
-        $_SESSION["errors"]["title"]="";
+    if(mb_ereg_match($pattern,$_POST["text"])){
         $_SESSION["errors"]["text"] ="本文が入力されていません";
-        $_SESSION["errors"]["reply"]="";
     }
-    if(empty($_POST["reply"])){
+    if(mb_ereg_match($pattern,$reply) || strlen($reply)<=0){
         $_SESSION["errors"]["reply"]="返信が入力されていません";
-        $_SESSION["errors"]["title"]="";
-        $_SESSION["errors"]["text"]="";
-    }
-    if(!empty($_POST["reply"])){
-        $_SESSION["errors"]["reply"]="";
-        $_SESSION["errors"]["title"]="";
-        $_SESSION["errors"]["text"]="";
+        $_SESSION["errors"]["title"] = "";
+        $_SESSION["errors"]["text"] ="";
     }
 
-    if(!empty($errors)){
+
+    if(mb_ereg_match($pattern,$reply) || strlen($reply)<=0){//処理が切り替わっていない
+        $_SESSION["errors"]["title"] = "";
+        $_SESSION["errors"]["text"] ="";
         if(isset($_SESSION["current_page"]) && !$_POST["board"]=="true"){
-            $_SESSION["errors"]=$errors;
             $crn = $_SESSION["current_page"];
             header("Location:board_log.php?page_num={$crn}");
+            return;
+        }else{
+            header("Location: board.php");
+            return;
         }
-        $_SESSION["errors"]=$errors;
-        header("Location: board.php");
-        exit;
     }
 
     /*$_SESSION["errors"]=[
