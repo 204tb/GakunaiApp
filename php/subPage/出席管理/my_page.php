@@ -30,11 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     <title>マイページ</title>
 </head>
 <?php include("../Components/load_js.php")?>
-
+<?php include("../Components/nav.php")?>
 <br>
 <body class="bg-lsBlue">
     <div class="">
-        <?php include("../Components/nav.php")?>
+
             <div class="container">
                     <h2 class="mb-5 container mt-5" style="margin-left: -0.5em;">学生情報</h2>
                         <table class="table container">
