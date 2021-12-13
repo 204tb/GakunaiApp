@@ -19,6 +19,9 @@
 
     }
     if(!isset($_GET["page_num"])){
+        if(ceil($get_count[0]/10)>=0){
+            header("Location:board.php");
+        }
         $_GET["page_num"]=1;
     }
 
