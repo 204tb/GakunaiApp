@@ -90,14 +90,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../css/sample.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="../../../css/bootstrap.css">
     <title>過去投稿一覧</title>
 </head>
 <?php include("../Components/load_js.php")?>
 <?php include("../Components/nav.php")?>
 
-<script src ="../../../js/jquery-3.6.0.min.js"></script>
+
 <body class="bg-lsBlue">
 
 <div class="container mt-5">
