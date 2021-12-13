@@ -2,6 +2,14 @@
     require_once "components/connect.php";
     require_once "components/functions.php";
     session_start();
+
+    if(!empty($_SESSION["user"])){
+        $user =$_SESSION["user"];
+    }else{
+        header('Location:../error_page.php');
+        exit;      
+    }
+
     $logs_all =[];
     $posts_10 = [];//投稿を10件格納する配列
     $PAGE_MAX=10;

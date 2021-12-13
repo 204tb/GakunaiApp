@@ -4,6 +4,12 @@
     require_once('../Components/user_check.php');
 
 
+    if(!empty($_SESSION["user"])){
+        $user =$_SESSION["user"];
+    }else{
+        header('Location:../error_page.php');
+        exit;      
+    }
     $logs=[];
 
     if(empty($_SESSION["errors"])){
