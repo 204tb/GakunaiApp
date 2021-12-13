@@ -18,18 +18,19 @@
         ];
 
     }
-    if(!isset($_GET["page_num"])){
-        if(ceil($get_count[0]/10)>=0){
-            header("Location:board.php");
-        }
-        $_GET["page_num"]=1;
-    }
+
 
     
     //現在のページの取得
     if(!isset($_GET["page_num"])){
+        if(ceil($get_count[0]/10)<=0){
+            header("Location:board.php");
+        }
         $current_page=1;
     }else{
+        if($_GET["page_num"]>ceil($get_count[0]/10) || $_GET["page_num"]<1){
+            header("Location:board.php");
+        }
         if(intval($_GET["page_num"])<=ceil($get_count[0]/10)){
             $current_page=$_GET["page_num"];
         }else{
