@@ -37,7 +37,7 @@
         $current_page=1;
     }else{
         if($_GET["page_num"]>ceil($get_count[0]/10) || $_GET["page_num"]<1){
-            header("Location:board.php");
+            header("Location:board_log.php");
         }
         if(intval($_GET["page_num"])<=ceil($get_count[0]/10)){
             $current_page=$_GET["page_num"];
