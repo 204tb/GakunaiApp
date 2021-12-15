@@ -22,10 +22,10 @@
     }
   
     $db_cnt = get_rows_cnt($pdo);
+    $dlt_data_cnt = get_rows_cnt_notdlt($pdo);
 
     if($db_cnt[0]>0){//データベースが空で無い場合
-    $current_index =max_id($pdo);//最大値の10個前
-
+    $current_index =max_id($pdo)-10;//最大値の10個前
     if($current_index<10){
         $current_index=0;
     }else{
@@ -38,8 +38,7 @@
 
             while(count($logs) <10){//要素が10個取得出来ていない場合  無理やり10個取得してしまうためエラーになる
                 $arrays =[];
-                $stmt = get_posts($pdo,$current_index);//投稿を取得
-
+                $stmt = get_posts_desc($pdo,$current_index);//投稿を取得
                 while($data =$stmt->fetch()){
                     if($get_check){
                         $arrays[]=$data;
@@ -48,7 +47,7 @@
                     }
                 }
 
-                if($db_cnt[0]<10){break;}
+                if($db_cnt[0]<10 && $dlt_data_cnt[0]<10){break;}
                 $get_check =true;//取得が2回目以降か判断
                 if($get_check){
                     $logs =array_merge($logs,$arrays);//配列を結合して$logに代入
@@ -66,7 +65,7 @@
             }
     }
 
-    $dlt_data_cnt = get_rows_cnt_notdlt($pdo);
+
 
 
 ?>

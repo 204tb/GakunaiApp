@@ -94,7 +94,7 @@ if(!empty($_SESSION["user"])){
             <div id="contents3" class ="contents">
                 <h3 id="Bulletin_board"class="subTitle_fadein3">掲示板</h3>
                 <p>掲示板です。</p>
-                <button type="button"></button>
+
                 <div class ="explanation">
                     <span id="explanation_title" class="explanation_title_board mar-lef4e">機能について</span>
                     <div class="explanation_text_board" id="explanation_text">
