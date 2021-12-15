@@ -94,6 +94,7 @@ if(!empty($_SESSION["user"])){
             <div id="contents3" class ="contents">
                 <h3 id="Bulletin_board"class="subTitle_fadein3">掲示板</h3>
                 <p>掲示板です。</p>
+                <button type="button"></button>
                 <div class ="explanation">
                     <span id="explanation_title" class="explanation_title_board mar-lef4e">機能について</span>
                     <div class="explanation_text_board" id="explanation_text">
@@ -101,13 +102,11 @@ if(!empty($_SESSION["user"])){
                         <p>過去の投稿内容全ては別ページから全て確認することが出来ます。</p>
                     </div>
                 </div>
-
                 <button type="submit" class ="Bulletin_board_button btn btn-primary"><a href="掲示板/board.php" style="color:white;">掲示板へ</a></button>
             </div>
 
     </div>
 </body>
-
 
     <script src ="../../js/exe.js"></script>  
 
