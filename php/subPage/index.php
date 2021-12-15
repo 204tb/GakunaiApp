@@ -72,7 +72,7 @@ if(!empty($_SESSION["user"])){
                 <div class="explanation">
                     <span id="explanation_title" class="explanation_title_attendancerate mar-lef4e">機能について</span>
                     <div class="explanation_text_attendancerate text-mono" id="explanation_text">
-                        <p>現在の学期の出席率を確認できます。</p>
+                        <p>現在の学期の出席率を確認できます。(出席率の計算は外部アプリケーションで行う)</p>
                         <p>また、マイページのボタンから出席と早退をすることが出来ます。</p>
                     </div>
                 </div>
@@ -85,7 +85,7 @@ if(!empty($_SESSION["user"])){
                 <div class ="explanation">
                     <span id="explanation_title" class="explanation_title_time mar-lef4e">機能について</span>
                     <div class="explanation_text_time" id="explanation_text">
-                        <p>現在所属しているクラスの時間割が閲覧可能です。</p>
+                        <p>現在所属しているクラスの、今学期の時間割が確認出来ます。</p>
                     </div>
                 </div>
                 <button class ="Timetable_button btn btn-primary"><a href="時間割/Timeable.php" class="color-white" style="color:white;">時間割確認へ<a></button>
@@ -99,7 +99,8 @@ if(!empty($_SESSION["user"])){
                     <span id="explanation_title" class="explanation_title_board mar-lef4e">機能について</span>
                     <div class="explanation_text_board" id="explanation_text">
                         <p>タイトルと140字以内の文章を投稿できる掲示板です。投稿内容は直近10件まで確認することが出来ます。</p>
-                        <p>過去の投稿内容全ては別ページから全て確認することが出来ます。</p>
+                        <p>過去の投稿内容は別ページから全て確認することが出来ます。</p>
+                        <p>投稿に返信をすることも可能です。</p>
                     </div>
                 </div>
                 <button type="submit" class ="Bulletin_board_button btn btn-primary"><a href="掲示板/board.php" style="color:white;">掲示板へ</a></button>
