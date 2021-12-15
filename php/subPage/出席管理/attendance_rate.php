@@ -103,6 +103,7 @@ function Get_Attendance_rate($pdo,$user)
             </tr>
         <?php endforeach; ?>
      </table>
+     <a href="my_page.php" class="pt-5">マイページへ戻る</a>
 </div>
 
 </body>

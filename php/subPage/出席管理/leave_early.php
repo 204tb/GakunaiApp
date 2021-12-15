@@ -219,10 +219,19 @@ if(!Status_Check($pdo_attendance,$user)){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../css/sample.css">
+    <link rel="stylesheet" href="../../../css/bootstrap.css">
     <title>早退</title>
 </head>
-<body>
-    <h3><?= $message ?></h3>
-    <a href="my_page.php">マイページへ戻る</a>
+<?php include("../Components/load_js.php")?>
+<?php include("../Components/nav.php")?>
+
+<body class="bg-lsBlue">
+    <div class="container pt-5">
+            <h3><?= $message ?></h3>
+            <br>
+        <a href="my_page.php" class="pt-5">マイページへ戻る</a>
+    </div>
+
 </body>
 </html>
