@@ -24,7 +24,7 @@
     $db_cnt = get_rows_cnt($pdo);
     $dlt_data_cnt = get_rows_cnt_notdlt($pdo);
 
-    if($db_cnt[0]>0){//データベースが空で無い場合
+    if($db_cnt[0]>0 && $dlt_data_cnt[0]>0){//データベースが空で無い場合
     $current_index =max_id($pdo)-10;//最大値の10個前
     if($current_index<10){
         $current_index=0;
@@ -47,12 +47,12 @@
                     }
                 }
 
-                if($db_cnt[0]<10 && $dlt_data_cnt[0]<10){break;}
+                if($db_cnt[0]<10 || $dlt_data_cnt[0]<10){break;}//データベースの要素数が10以下 データが削除されていない要素数が10以下
                 $get_check =true;//取得が2回目以降か判断
                 if($get_check){
                     $logs =array_merge($logs,$arrays);//配列を結合して$logに代入
                 }
-                $current_index-=10;//値の取得位置を10
+                $current_index-=1;//値の取得位置を10
             }
 
             //日付で並び替え　（配列内のdateを使う
