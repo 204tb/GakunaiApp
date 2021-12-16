@@ -171,11 +171,11 @@ body{
    animation: new_posts 3s linear;
    animation-iteration-count:infinite;
 }
-.name_pos{
-    position: relative;
+/*.name_pos{
+    /*position: relative;
     right: 0;
     bottom:0;
-}
+}*/
 @keyframes new_posts{
     0%{
       opacity: 0;

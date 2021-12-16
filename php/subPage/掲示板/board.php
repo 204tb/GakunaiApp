@@ -96,11 +96,14 @@
                         <?php foreach($logs as $value):?>
                                 
                             <li class="list-group-item pb-5">
-                                <span><span class="ml-5 float-right board_date"><?=$value["date"]?></span><span class="name_pos">投稿者:<?=$value["name"]?></span></span>
+                                <span class="">
+                                    <span class="ml-5 float-right board_date"><?=$value["date"]?></span>
+                                    <span class="name_pos ml-2">投稿者:<?=$value["name"]?></span>
+                                </span>
                                 <div>
-                                    <label class="board_title marl-5p"><?=$value["title"]?></label>
+                                    <label class="board_title mt-3 ml-5 mb-5"><?=$value["title"]?></label>
                                 </div>
-                                    <span class="board_text marl-5p"><?=$value["text"]?></span>
+                                    <span class="board_text ml-5 mt-4"><?=$value["text"]?></span>
 
                                 <?php $reply = get_reply($pdo,$value["title"],$value["name"],$value["date"]);?>
                                 <!--$replyから　日付を取得して投稿を区別-->
