@@ -68,9 +68,9 @@ if(!empty($_SESSION["user"])){
 
             <div id="contents1" class ="contents">
                 <h3 id="Attendance_rate"class="subTitle_fadein">出席管理</h3><!--#Attendance_rate,#Timeable,#Bulletin_board,#Resevation-->
-                <p>マイページで出席に関する機能が使用できます。</p>
+                <!--<p>マイページで出席に関する機能が使用できます。</p>-->
                 <div class="explanation">
-                    <span id="explanation_title" class="explanation_title_attendancerate mar-lef4e">機能について</span>
+                    <button id="explanation_title" class="explanation_title_attendancerate btn btn-secondaly float-right" style="background: gray;color:white;">機能について</button>
                     <div class="explanation_text_attendancerate text-mono" id="explanation_text">
                         <p>現在の学期の出席率を確認できます。(出席率の計算は外部アプリケーションで行う)</p>
                         <p>また、マイページのボタンから出席と早退をすることが出来ます。</p>
@@ -81,9 +81,9 @@ if(!empty($_SESSION["user"])){
             </div>
             <div id="contents2" class ="contents">
                 <h3 id="Timeable"class="subTitle_fadein2">時間割</h3>
-                <p>今学期の出席率を確認出来ます。</p>
+                <!--<p>今学期の出席率を確認出来ます。</p>-->
                 <div class ="explanation">
-                    <span id="explanation_title" class="explanation_title_time mar-lef4e">機能について</span>
+                    <button id="explanation_title" class="explanation_title_time btn btn-secondaly  float-right" style="background: gray;color:white;">機能について</button>
                     <div class="explanation_text_time" id="explanation_text">
                         <p>現在所属しているクラスの、今学期の時間割が確認出来ます。</p>
                     </div>
@@ -93,10 +93,10 @@ if(!empty($_SESSION["user"])){
     
             <div id="contents3" class ="contents">
                 <h3 id="Bulletin_board"class="subTitle_fadein3">掲示板</h3>
-                <p>掲示板です。</p>
+                <!--<p>掲示板です。</p>-->
 
                 <div class ="explanation">
-                    <span id="explanation_title" class="explanation_title_board mar-lef4e">機能について</span>
+                    <button id="explanation_title" class="explanation_title_board btn btn-secondaly float-right" style="background: gray;color:white;">機能について</button>
                     <div class="explanation_text_board" id="explanation_text">
                         <p>タイトルと140字以内の文章を投稿できる掲示板です。投稿内容は直近10件まで確認することが出来ます。</p>
                         <p>過去の投稿内容は別ページから全て確認することが出来ます。</p>
@@ -108,7 +108,7 @@ if(!empty($_SESSION["user"])){
 
     </div>
 </body>
-
+<script src="../../js/functions.js"></script>
     <script src ="../../js/exe.js"></script>  
 
 </html>
