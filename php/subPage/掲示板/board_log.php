@@ -140,12 +140,12 @@
                                     ?>
                                     <?php $btn_name = "reply_chack".$value["title"].$value["name"].$str_date?><!--返信用のボタンを追加-->
                                     <?php $reply_name = "reply".$value["title"].$value["name"].$str_date?>
-
-                                    <div class="<?=$reply_name?> text-left list-group-item">
+                                    <?php arsort($reply,0)?>
+                                    <div class="<?=$reply_name?>  text-left list-group-item mt-3" style="border-radius: 60px;">
                                         <?php foreach($reply as $rp):?>
                                                     <p class="mb-1">返信者:<?=$rp["name"]?></p>
-                                                    <p class="ml-5"><?=$rp["reply"]?></p>
-                                                    <p class="mt-1"><?=$rp["date"]?></p>
+                                                    <p class="ml-5 mt-4 mb-4" style="width: 90%;"><?=$rp["reply"]?></p>
+                                                    <p class="mt-5 mr-5 text-right"><?=$rp["date"]?></p>
                                                     <p style="border-bottom: 0.01em solid black;"></p>
                                                     
                                         <?php endforeach;?>   
@@ -153,7 +153,7 @@
                                     </div>
 
                                     
-                                    <button class="<?=$btn_name?> float-right btn btn-primary mt-2">返信一覧</button>
+                                    <button class="<?=$btn_name?> float-right btn btn-primary mt-4">返信一覧</button>
                                     <script>
 
                                         $(".<?=$reply_name?>").hide();//返信を隠す  
