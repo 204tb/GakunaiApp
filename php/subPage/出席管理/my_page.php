@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
             <div class="container">
                     <h3 class="mb-5 container mt-5" style="margin-left: -0.5em;">学生情報</h3>
-                        <table class="table container table-borderless ml-5">
+                        <table class="table container table-borderless" style="font-size: larger; margin-left:10.75%;">
                             <th>クラス</th>
                             <th>生徒番号</th>
                             <th>ユーザー名</th>
