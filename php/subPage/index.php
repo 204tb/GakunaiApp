@@ -88,7 +88,7 @@ if(!empty($_SESSION["user"])){
                         <p>現在所属しているクラスの、今学期の時間割が確認出来ます。</p>
                     </div>
                 </div>
-                <button class ="Timetable_button btn" style="background: gray;color:white;"><a href="時間割/Timeable.php" class="color-white" style="color:white;">時間割確認へ<a></button>
+                <button class ="Timetable_button btn" style="background: gray;color:white;"><a href="時間割/Timeable.php" class="color-white" style="color:white;">時間割へ<a></button>
             </div>
     
             <div id="contents3" class ="contents">
