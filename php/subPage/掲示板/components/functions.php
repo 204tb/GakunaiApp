@@ -1,6 +1,6 @@
 <?php
 //投稿データの取得
-    function get_posts($pdo,$offset=0){
+    function get_posts($pdo,$offset){
         $sql = "SELECT * FROM userlog WHERE delete_flag=0 ORDER BY id ASC LIMIT 10 OFFSET {$offset}";//削除されている投稿を飛ばす処理を追加(delete_postが1であれば飛ばして10件になるまで取得)
         $stmt=$pdo->query($sql);
         return $stmt;
@@ -8,8 +8,8 @@
     }
 
     //投稿データの取得(降順)
-    function get_posts_desc($pdo,$offset){
-        $sql = "SELECT * FROM userlog WHERE delete_flag=0 ORDER BY id DESC LIMIT 10 OFFSET {$offset}";
+    function get_posts_desc($pdo){
+        $sql = "SELECT * FROM userlog WHERE delete_flag=0 ORDER BY id DESC LIMIT 10";
         $stmt=$pdo->query($sql);
         return $stmt;
     }
@@ -19,7 +19,7 @@
         $sql = "SELECT max(id) AS id FROM userlog";
         $stmt=$pdo->query($sql);
         $max_id =$stmt->fetch();
-        return $max_id["id"];//最大値から表示件数の10を引く
+        return $max_id["id"];
     }
     
     function get_title($pdo,$offset){

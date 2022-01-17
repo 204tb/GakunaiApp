@@ -25,11 +25,12 @@
     $dlt_data_cnt = get_rows_cnt_notdlt($pdo);//データベース内の総データ数
 
     if($db_cnt[0]>0 && $dlt_data_cnt[0]>0){//データベースが空で無い場合
-    $current_index =max_id($pdo)-11;//最大値の10個前
+    $current_index =max_id($pdo)-10;//最大値の10個前
+    var_dump($current_index);
     if($current_index<10){
         $current_index=0;
     }
-    var_dump($current_index);
+
         //直近10件を表示  削除されている投稿があった場合追加で取得
         $get_check =false;
             //テーブルの中が10個以下のときの処理を分ける
@@ -38,7 +39,7 @@
             //$logsの取得方法に問題がある  今週中に修正
             while(count($logs) <10){//要素が10個取得出来ていない場合  無理やり10個取得してしまうためエラーになる
                 $arrays =[];
-                $stmt = get_posts_desc($pdo,$current_index);//投稿を取得
+                $stmt = get_posts_desc($pdo);//投稿を取得
 
                 while($data =$stmt->fetch()){
                     if($get_check){

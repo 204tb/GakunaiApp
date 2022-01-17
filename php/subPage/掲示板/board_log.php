@@ -202,9 +202,12 @@
         $page_amount=$page_numbers;
     }
     //不足ページの補充
-    if($current_page==1){
-        $page_amount+=2;
 
+    if($current_page==$page_numbers){
+        $page_start-=2;
+    }
+    if($current_page==$page_numbers-1){
+        $page_start--;
     }
     if($page_numbers==1){
         $page_amount=1;
@@ -212,17 +215,19 @@
     if($page_numbers==2){
         $page_amount=2;
     }
+    if($current_page<=3){
+        $page_start=1;
+        $page_amount=5;//基本ページ表示数に固定
 
-    if($current_page==2 && $page_numbers != 2){
-        $page_amount++;
+    }if($current_page==$page_numbers){
+        $page_amount = $page_numbers;
     }
-    if($current_page>=3){
-        if($current_page==$page_numbers){
-            $page_start-=2;
-        }
-        if($current_page==$page_numbers-1){
-            $page_start--;
-        }
+    /*if($current_page==2 && $page_numbers != 2){
+        $page_amount++;
+    }*/
+    if($page_numbers<=5){
+        $page_start=1;
+
     }
 
 ?>
