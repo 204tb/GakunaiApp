@@ -171,11 +171,11 @@ body{
    animation: new_posts 3s linear;
    animation-iteration-count:infinite;
 }
-.name_pos{
-    position: relative;
+/*.name_pos{
+    /*position: relative;
     right: 0;
     bottom:0;
-}
+}*/
 @keyframes new_posts{
     0%{
       opacity: 0;
@@ -196,9 +196,10 @@ body{
 
 #Attendance_rate,#Timeable,#Bulletin_board,#Resevation{
     margin-top: 4%;
-    padding-top: 0.2em;
-    padding-bottom:0.2em ;
-    border-left: solid 10px rgb(104, 178, 207);
+    padding-top: 0.1em;
+    padding-bottom:0.1em ;
+    padding-left: 1em;
+    border-bottom: .21em rgb(174, 232, 253) solid;
     background-color: skyblue;
 }
 
@@ -327,3 +328,8 @@ body{
     }
 }
 
+/*hoverの設定*/
+
+.hover-content-mypage:hover{
+    display: block;/*画面に表示(元の文章は隠しておく必要がある)*/
+}

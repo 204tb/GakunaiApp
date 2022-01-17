@@ -4,6 +4,12 @@
     require_once('../Components/user_check.php');
 
 
+    if(!empty($_SESSION["user"])){
+        $user =$_SESSION["user"];
+    }else{
+        header('Location:../error_page.php');
+        exit;      
+    }
     $logs=[];
 
     if(empty($_SESSION["errors"])){
@@ -15,24 +21,24 @@
 
     }
   
-    $db_cnt = get_rows_cnt($pdo);
+    $db_cnt = get_rows_cnt($pdo);//データベースの総データ数
+    $dlt_data_cnt = get_rows_cnt_notdlt($pdo);//データベース内の総データ数
 
-    if($db_cnt[0]>0){//データベースが空で無い場合
-    $current_index =max_id($pdo);//最大値の10個前
-
+    if($db_cnt[0]>0 && $dlt_data_cnt[0]>0){//データベースが空で無い場合
+    $current_index =max_id($pdo)-11;//最大値の10個前
     if($current_index<10){
         $current_index=0;
-    }else{
-
     }
+    var_dump($current_index);
         //直近10件を表示  削除されている投稿があった場合追加で取得
         $get_check =false;
             //テーブルの中が10個以下のときの処理を分ける
 
-
+            //データの取得位置が2番目からになる
+            //$logsの取得方法に問題がある  今週中に修正
             while(count($logs) <10){//要素が10個取得出来ていない場合  無理やり10個取得してしまうためエラーになる
                 $arrays =[];
-                $stmt = get_posts($pdo,$current_index);//投稿を取得
+                $stmt = get_posts_desc($pdo,$current_index);//投稿を取得
 
                 while($data =$stmt->fetch()){
                     if($get_check){
@@ -42,11 +48,12 @@
                     }
                 }
 
-                if($db_cnt[0]<10){break;}
+                if($db_cnt[0]<10 || $dlt_data_cnt[0]<10){break;}//データベースの要素数が10以下 データが削除されていない要素数が10以下
                 $get_check =true;//取得が2回目以降か判断
                 if($get_check){
                     $logs =array_merge($logs,$arrays);//配列を結合して$logに代入
                 }
+
                 $current_index-=10;//値の取得位置を10
             }
 
@@ -60,7 +67,7 @@
             }
     }
 
-    $dlt_data_cnt = get_rows_cnt_notdlt($pdo);
+
 
 
 ?>
@@ -89,13 +96,16 @@
                 <div class ="post card">
                     <ul class="list-group">
                         <?php foreach($logs as $value):?>
-                                
+
                             <li class="list-group-item pb-5">
-                                <span><span class="ml-5 float-right board_date"><?=$value["date"]?></span><span class="name_pos">投稿者:<?=$value["name"]?></span></span>
+                                <span class="">
+                                    <span class="ml-5 float-right board_date"><?=$value["date"]?></span>
+                                    <span class="name_pos ml-2">投稿者:<?=$value["name"]?></span>
+                                </span>
                                 <div>
-                                    <label class="board_title marl-5p"><?=$value["title"]?></label>
+                                    <label class="board_title mt-3 ml-5 mb-5"><?=$value["title"]?></label>
                                 </div>
-                                    <span class="board_text marl-5p"><?=$value["text"]?></span>
+                                    <span class="board_text ml-5 mt-4"><?=$value["text"]?></span>
 
                                 <?php $reply = get_reply($pdo,$value["title"],$value["name"],$value["date"]);?>
                                 <!--$replyから　日付を取得して投稿を区別-->
@@ -108,18 +118,17 @@
                                     ?>
                                     <?php $btn_name = "reply_chack".$value["title"].$value["name"].$str_date?><!--返信用のボタンを追加-->
                                     <?php $reply_name = "reply".$value["title"].$value["name"].$str_date?>
-
-                                    <div class="<?=$reply_name?> text-left list-group-item">
+                                    <?php arsort($reply,0)?>
+                                    <div class="<?=$reply_name?> text-left list-group-item mt-3" style="border-radius: 60px;">
                                         <?php foreach($reply as $rp):?>
                                                     <p class="mb-1">返信者:<?=$rp["name"]?></p>
-                                                    <p class="ml-5"><?=$rp["reply"]?></p>
-                                                    <p class="mt-1"><?=$rp["date"]?></p>
-                                                    <p style="border-bottom: 0.01em solid black;"></p>
+                                                    <p class="ml-5 mt-4 mb-4" style="width: 90%;"><?=$rp["reply"]?></p>
+                                                    <p class="mt-5 mr-5 text-right"><?=$rp["date"]?></p>
+                                                    <p style="border-bottom: 0.005em solid black;"></p>
                                                     
                                         <?php endforeach;?>   
-                                
                                     </div>
-                                    <button class="<?=$btn_name?> float-right btn btn-primary mt-2">返信一覧</button>
+                                    <button class="<?=$btn_name?> float-right btn btn-primary mt-4">返信一覧</button>
                                     <script>
 
                                         $(".<?=$reply_name?>").hide();//返信を隠す  
@@ -145,7 +154,7 @@
 
 
         <div class="float-right">
-            <p class="mt-5"><a href="board_log.php?page_num=1">全ての投稿を見る</a></p>
+            <p class="mt-5"><a href="board_log.php">全ての投稿を見る</a></p>
         </div>
         <?php endif;?>
 
