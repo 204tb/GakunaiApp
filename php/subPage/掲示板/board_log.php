@@ -215,6 +215,24 @@
     if($page_numbers==2){
         $page_amount=2;
     }
+
+    
+    if($current_page<4){
+        $page_start=1;
+        if($page_numbers<=3){
+            $page_amount = $page_numbers;
+        }else{
+            $page_amount=5;//基本ページ表示数に固定
+        }
+    }
+    if($current_page>=4){
+
+        if($page_numbers<6){
+            $page_numbers=1;
+            $page_amount=5;
+        }
+    }
+    /*
     if($current_page<=4){
         $page_start=1;
         if($page_numbers<=4){
@@ -222,10 +240,13 @@
         }else{
             $page_amount=5;//基本ページ表示数に固定
         }
-    }
+    }*/
     if($current_page==$page_numbers){
         $page_amount = $page_numbers;
     }
+
+
+
     /*if($current_page==2 && $page_numbers != 2){
         $page_amount++;
     }*/
