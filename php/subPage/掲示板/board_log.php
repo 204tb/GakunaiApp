@@ -216,7 +216,7 @@
         $page_amount=2;
     }
 
-    
+
     if($current_page<4){
         $page_start=1;
         if($page_numbers<=3){
@@ -261,8 +261,12 @@
             <?php echo '<button class="btn btn-primary mr-5 mb-3 page-item"><a href ="./board_log.php?page_num='.($previous).'" style="color:white;">'."前へ".'</a></button>'?>
             <div class="buttons" style="text-align: center;">
                 <?php for($i=$page_start;$i<=$page_amount;$i++){
-
-                    echo '<button class="btn btn-primary mr-5 mb-3 page-item"><a href ="./board_log.php?page_num='.$i.'" style="color:white;">'.$i.'</a></button>';
+                    if($i==$current_page){//現在のページをわかりやすく
+                        echo '<button class="btn btn-primary mr-5 mb-3 page-item disabled"><a href ="./board_log.php?page_num='.$i.'" style="color:white;">'.$i.'</a></button>';
+                    }else{
+                        echo '<button class="btn btn-primary mr-5 mb-3 page-item"><a href ="./board_log.php?page_num='.$i.'" style="color:white;">'.$i.'</a></button>';
+                    }
+                    
                 }
                 ?>
             </div>
