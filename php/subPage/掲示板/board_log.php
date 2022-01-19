@@ -138,8 +138,8 @@
                                     <?php $date = new DateTime($value["date"]);
                                         $str_date = $date->format("Y-m-d-H-i-s");//string型に変換
                                     ?>
-                                    <?php $btn_name = "reply_chack".$value["title"].$value["name"].$str_date?><!--返信用のボタンを追加-->
-                                    <?php $reply_name = "reply".$value["title"].$value["name"].$str_date?>
+                                    <?php $btn_name = "reply_chack".strtotime($value["title"]).$value["name"].$str_date?><!--返信用のボタンを追加-->
+                                    <?php $reply_name = "reply".strtotime($value["title"]).$value["name"].$str_date?>
                                     <?php arsort($reply,0)?>
                                     <div class="<?=$reply_name?>  text-left list-group-item mt-3" style="border-radius: 60px;">
                                         <?php foreach($reply as $rp):?>

@@ -104,9 +104,9 @@
                                     <span class="name_pos ml-2">投稿者:<?=$value["name"]?></span>
                                 </span>
                                 <div>
-                                    <label class="board_title mt-3 ml-5 mb-5"><?=$value["title"]?></label>
+                                    <label class="board_title mt-3 ml-5 mb-5"style="display:inline-block;text-align: left;width: 85%;"><?=$value["title"]?></label>
                                 </div>
-                                    <span class="board_text ml-5 mt-4"><?=$value["text"]?></span>
+                                    <span class="board_text ml-5 mt-4" style="display:inline-block;text-align: left;width: 85%;"><?=$value["text"]?></span>
 
                                 <?php $reply = get_reply($pdo,$value["title"],$value["name"],$value["date"]);?>
                                 <!--$replyから　日付を取得して投稿を区別-->
@@ -117,13 +117,14 @@
                                     <?php $date = new DateTime($value["date"]);
                                         $str_date = $date->format("Y-m-d-H-i-s");//string型に変換
                                     ?>
-                                    <?php $btn_name = "reply_chack".$value["title"].$value["name"].$str_date?><!--返信用のボタンを追加-->
-                                    <?php $reply_name = "reply".$value["title"].$value["name"].$str_date?>
+                                    <!--日付が入力されたときに、日付をコードに変換する（strtotime）-->
+                                    <?php $btn_name = "reply_chack".strtotime($value["title"]).$value["name"].$str_date?><!--返信用のボタンを追加-->
+                                    <?php $reply_name = "reply".strtotime($value["title"]).$value["name"].$str_date?>
                                     <?php arsort($reply,0)?>
                                     <div class="<?=$reply_name?> text-left list-group-item mt-3" style="border-radius: 60px;">
                                         <?php foreach($reply as $rp):?>
                                                     <p class="mb-1">返信者:<?=$rp["name"]?></p>
-                                                    <p class="ml-5 mt-4 mb-4" style="width: 90%;"><?=$rp["reply"]?></p>
+                                                    <p class="ml-5 mt-4 mb-4" style="display:inline-block;text-align: left;width: 85%;"><?=$rp["reply"]?></p>
                                                     <p class="mt-5 mr-5 text-right"><?=$rp["date"]?></p>
                                                     <p style="border-bottom: 0.005em solid black;"></p>
                                                     
@@ -131,12 +132,10 @@
                                     </div>
                                     <button class="<?=$btn_name?> float-right btn btn-primary mt-4">返信一覧</button>
                                     <script>
-
                                         $(".<?=$reply_name?>").hide();//返信を隠す  
                                         $(".<?=$btn_name?>").click(function(){//
                                             $(".<?=$reply_name?>").toggle(450);//表示非表示を切替
                                         });
-
                                     </script>
                                 <?php endif;?>
 
