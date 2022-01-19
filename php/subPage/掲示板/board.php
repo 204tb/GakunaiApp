@@ -175,7 +175,7 @@
 
                                     <span style="color:red;" class ="mar-lef4e"><?=$_SESSION["errors"]["title"]?></span>
 
-                                    <textarea name="title" id="title" cols="20" rows="1" class="form-control" style="width:30%;" name="username"></textarea><br>
+                                    <textarea name="title" id="title" cols="14" rows="2" maxlength = 28 class="form-control" style="width:45%;" name="username"></textarea><br>
                                 </div>
                                 <div class="marl-10p" style="width:100%;">
                                     <label for="text">投稿内容</label>
