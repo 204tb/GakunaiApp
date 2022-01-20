@@ -60,7 +60,6 @@
     }
     if($db_cnt[0]>0){
     //直近10件を降順で表示
-        //$_SESSIONに登録することでシリアル化エラーが出る(後で修正)
         $post_all = get_post_all($pdo);//投稿を全て取得
         $data_count = get_count($pdo);//投稿数を取得(削除済み投稿を含まない)
 
@@ -144,12 +143,11 @@
                                     <div class="<?=$reply_name?>  text-left list-group-item mt-3" style="border-radius: 60px;">
                                         <?php foreach($reply as $rp):?>
                                                     <p class="mb-1">返信者:<?=$rp["name"]?></p>
-                                                    <p class="ml-5 mt-4 mb-4" style="width: 90%;"><?=$rp["reply"]?></p>
+                                                    <p class="ml-5 mt-4 mb-4" style="width: 85%;"><?=$rp["reply"]?></p>
                                                     <p class="mt-5 mr-5 text-right"><?=$rp["date"]?></p>
                                                     <p style="border-bottom: 0.01em solid black;"></p>
                                                     
-                                        <?php endforeach;?>   
-                                
+                                        <?php endforeach;?>
                                     </div>
 
                                     
@@ -262,7 +260,7 @@
             <div class="buttons" style="text-align: center;">
                 <?php for($i=$page_start;$i<=$page_amount;$i++){
                     if($i==$current_page){//現在のページをわかりやすく
-                        echo '<button class="btn btn-primary mr-5 mb-3 page-item disabled"><a href ="./board_log.php?page_num='.$i.'" style="color:white;">'.$i.'</a></button>';
+                        echo '<button class="btn btn-primary mr-5 mb-3 page-item disabled" disabled>'.$i.'</button>';
                     }else{
                         echo '<button class="btn btn-primary mr-5 mb-3 page-item"><a href ="./board_log.php?page_num='.$i.'" style="color:white;">'.$i.'</a></button>';
                     }
