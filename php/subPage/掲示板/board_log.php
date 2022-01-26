@@ -36,13 +36,16 @@
         }
         $current_page=1;
     }else{
+        if(!intval($_GET["page_num"])){
+            header("Location:board_log.php");
+        }
         if($_GET["page_num"]>ceil($get_count[0]/10) || $_GET["page_num"]<1){
             header("Location:board_log.php");
         }
         if(intval($_GET["page_num"])<=ceil($get_count[0]/10)){
-            $current_page=$_GET["page_num"];
+            $current_page=(int)$_GET["page_num"];
         }else{
-            $current_page=ceil($get_count[0]/10);
+            $current_page=(int)ceil($get_count[0]/10);
         }
     }
     if($_SESSION["reply"]){//返信をしていた場合
