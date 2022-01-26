@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: 127.0.0.1
--- 生成日時: 2022-01-17 02:24:55
+-- 生成日時: 2022-01-26 01:07:56
 -- サーバのバージョン： 10.4.21-MariaDB
 -- PHP のバージョン: 8.0.11
 
@@ -37,6 +37,16 @@ CREATE TABLE `attendance_log` (
   `attendance_status` varchar(12) NOT NULL,
   `update_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- テーブルのデータのダンプ `attendance_log`
+--
+
+INSERT INTO `attendance_log` (`id`, `students_id`, `students_classes_id`, `day_of_week`, `timetable_times_id`, `timetable_subjects_id`, `attendance_status`, `update_time`) VALUES
+(1, 200001, 'ig21', '月曜日', 3, '理科', '出席', '2022-01-17 10:42:02'),
+(2, 200001, 'ig21', '水曜日', 8, '社会', '出席', '2022-01-24 03:42:20'),
+(3, 200001, 'ig21', '木曜日', 1, '国語', '出席', '2022-01-24 03:42:20'),
+(4, 200001, 'ig21', '金曜日', 2, '数学', '出席', '2022-01-24 03:44:35');
 
 -- --------------------------------------------------------
 
@@ -97,8 +107,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`student_id`, `student_name`, `furigana`, `gender`, `email`, `password`, `classes_id`) VALUES
-(200001, '曽田航介', 'ソタコウスケ', '男', '200099oy@yse-c.net', '$2y$10$d9Mf0zTr5w86Mmg32CVN0OSbhVHGTngEoolQ6kjSzrvZarpzrVwIi', 'ig21'),
-(200002, 'aiueo', 'アイウエオ', '男', 'a@a.aa', '$2y$10$O.GnnLip6BExp/NcPlHbeuB7kPgdkz6w12Ey2t5kYIiS.IwxGJSnm', 'ig22');
+(200001, '曽田航介', 'ソタコウスケ', '男', '200099oy@yse-c.net', '$2y$10$VBsNjUN.o47vt39t96mRRumF2AGSAB7CPvapjNPt61.fahhGPEm56', 'ig21');
 
 --
 -- ダンプしたテーブルのインデックス
@@ -145,7 +154,7 @@ ALTER TABLE `students`
 -- テーブルの AUTO_INCREMENT `attendance_log`
 --
 ALTER TABLE `attendance_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- テーブルの AUTO_INCREMENT `attendance_rate`
@@ -157,7 +166,7 @@ ALTER TABLE `attendance_rate`
 -- テーブルの AUTO_INCREMENT `students`
 --
 ALTER TABLE `students`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200003;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200002;
 
 --
 -- ダンプしたテーブルの制約
