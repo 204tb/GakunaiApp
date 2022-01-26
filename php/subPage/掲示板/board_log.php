@@ -36,7 +36,7 @@
         }
         $current_page=1;
     }else{
-        if(!intval($_GET["page_num"])){
+        if(!intval($_GET["page_num"])){//入力値が文字列だった場合
             header("Location:board_log.php");
         }
         if($_GET["page_num"]>ceil($get_count[0]/10) || $_GET["page_num"]<1){
