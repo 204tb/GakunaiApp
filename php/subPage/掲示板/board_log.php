@@ -3,7 +3,7 @@
     require_once "components/functions.php";
     session_start();
 
-    if(!empty($_SESSION["user"])){
+    if(!empty($_SESSION["user"])){//セッションにユーザー情報があれば
         $user =$_SESSION["user"];
     }else{
         header('Location:../error_page.php');
@@ -12,8 +12,8 @@
 
     $logs_all =[];
     $posts_10 = [];//投稿を10件格納する配列
-    $PAGE_MAX=10;
-    $get_count = get_count($pdo);//削除済み投稿を除く
+    $PAGE_MAX=10;//1ページの表示数
+    $get_count = get_count($pdo);//未削除データの総数
     if(!isset($_SESSION["reply"])){
         $_SESSION["reply"]=false;//返信判定用のフラグ
     }
@@ -30,8 +30,8 @@
 
     
     //現在のページの取得
-    if(!isset($_GET["page_num"])){
-        if(ceil($get_count[0]/10)<=0){
+    if(!isset($_GET["page_num"])){//ページ番号が設定されていなければ
+        if(ceil($get_count[0]/10)<=0){//未削除のページ数が0以下の場合
             header("Location:board.php");
         }
         $current_page=1;
@@ -233,24 +233,14 @@
             $page_amount=5;
         }
     }
-    /*
-    if($current_page<=4){
-        $page_start=1;
-        if($page_numbers<=4){
-            $page_amount = $page_numbers;
-        }else{
-            $page_amount=5;//基本ページ表示数に固定
-        }
-    }*/
+
     if($current_page==$page_numbers){
         $page_amount = $page_numbers;
     }
 
 
 
-    /*if($current_page==2 && $page_numbers != 2){
-        $page_amount++;
-    }*/
+
     if($page_numbers<=5){
         $page_start=1;
 
