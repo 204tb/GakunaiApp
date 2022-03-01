@@ -15,13 +15,3 @@ function input_confirm(){//入力内容の確認ダイアログを表示
     }
 }
 
-function sleep(sec){
-    var nowsec =0;
-    var id = setInterval(function(){
-        nowsec++;
-
-        if(nowsec>sec){
-            clearInterval(id);//処理の終了
-        }
-    },1000);
-}
