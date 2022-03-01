@@ -19,7 +19,7 @@ function inputCheck_rate(){
         alert("不正なパスワードです")
         return result_pass
     }
-    console.log(result_id)
+
     return true
 }
 //掲示板の入力値チェック
