@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(!empty($_SESSION["user"])){
+if(!empty($_SESSION["user"])){//ユーザーがセッションに存在していなければ
     $user =$_SESSION["user"];
 }else{
     header('Location: error_page.php');
@@ -26,19 +26,7 @@ if(!empty($_SESSION["user"])){
 <script src ="../../js/jquery-3.6.0.min.js"></script>
 <script src="../../js/popper.min.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
-<!--
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
--->
-<!--
 
-//動作しない
-
-<script type="text/javascript" src ="../../js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="../../js/popper.min.js"></script>
-<script type="text/javascript" src="../../js/bootstrap.bundle.js"></script>
-
--->
 <body class="bg-lsBlue">
     
 <span class="defBarColor fixed-top" style="width: 100%;height:4em;;"><h1>　</h1>
