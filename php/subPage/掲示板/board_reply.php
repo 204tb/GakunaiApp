@@ -20,10 +20,10 @@
     $pattern="^(\s|　)+$";//空白文字の検索パターン
     //入力値が空の場合の処理
 
-    if(mb_ereg_match($pattern,$_POST["title"])){
+    if(mb_ereg_match($pattern,$_POST["title"])){//タイトルに空白が入力されていた場合
         $_SESSION["errors"]["title"] = "タイトルが入力されていません";
     }
-    if(mb_ereg_match($pattern,$_POST["text"])){
+    if(mb_ereg_match($pattern,$_POST["text"])){//本文に空白が入力されていた場合
         $_SESSION["errors"]["text"] ="本文が入力されていません";
     }
     if(mb_ereg_match($pattern,$reply) || strlen($reply)<=0){
@@ -33,7 +33,7 @@
     }
 
 
-    if(mb_ereg_match($pattern,$reply) || strlen($reply)<=0){//処理が切り替わっていない
+    if(mb_ereg_match($pattern,$reply) || strlen($reply)<=0){
         $_SESSION["errors"]["title"] = "";
         $_SESSION["errors"]["text"] ="";
         if(isset($_SESSION["current_page"]) && !$_POST["board"]=="true"){
@@ -46,16 +46,6 @@
         }
     }
 
-    /*$_SESSION["errors"]=[
-        "title" => "",
-        "text" => ""
-    ];
-    if($_POST["board"]){
-        $_SESSION["errors"]=[
-            "title" => "",
-            "text" => ""
-        ];
-    }*/
 
     $_SESSION["reply"] = true;
 
@@ -63,7 +53,7 @@
     $stmt = $pdo->prepare($sql);
     $stmt->execute([":title" => $reply_data[0],":post_user_name"=>$reply_data[1],":name"=>$reply_user,":reply" => $reply, ":distinationDate" => $reply_data[2]]);
 
-    if(isset($_SESSION["current_page"]) && !$_POST["board"]=="true"){
+    if(isset($_SESSION["current_page"]) && !$_POST["board"]=="true"){//過去投稿一覧からの返信だった場合
         $crn = $_SESSION["current_page"];
         header("Location:board_log.php?page_num={$crn}");
     }else{

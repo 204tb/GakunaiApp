@@ -4,7 +4,7 @@
     require_once('../Components/user_check.php');
 
 
-    if(!empty($_SESSION["user"])){
+    if(!empty($_SESSION["user"])){//ユーザーが空で無い場合
         $user =$_SESSION["user"];
     }else{
         header('Location:../error_page.php');
@@ -12,7 +12,7 @@
     }
     $logs=[];
 
-    if(empty($_SESSION["errors"])){
+    if(empty($_SESSION["errors"])){//errorsが未定義の場合
         $_SESSION["errors"]=[
             "title" => "",
             "text" => "",
@@ -26,7 +26,7 @@
 
     if($db_cnt[0]>0 && $dlt_data_cnt[0]>0){//データベースが空で無い場合
     $current_index =max_id($pdo)-10;//最大値の10個前
-    var_dump($current_index);
+
     if($current_index<10){
         $current_index=0;
     }

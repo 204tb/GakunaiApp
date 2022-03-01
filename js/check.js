@@ -11,13 +11,11 @@ function inputCheck_rate(){
     //入力値判定
     var result_id =id_value.match(id_regex);
     var result_pass = pass_value.match(pass_regex);
-    if(!result_id){
-        console.log(id_value)
-        console.log(result_id)
+    if(!result_id){//idがマッチしていなければ
         alert("正しい学籍番号を入力してください")
         return result_id
     }
-    if(!result_pass){
+    if(!result_pass){//passがマッチしていなければ
         alert("不正なパスワードです")
         return result_pass
     }
